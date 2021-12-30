@@ -1,0 +1,2 @@
+# EVANGELION-01-Quick
+基于EVANGELION-01的快速启动方案
