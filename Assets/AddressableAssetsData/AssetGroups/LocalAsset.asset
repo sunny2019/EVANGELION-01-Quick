@@ -25,10 +25,6 @@ MonoBehaviour:
     m_Address: Assets/Prefab/Synchronize/Sprite/sp_ProgressBar.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 35bd64ab49faa8744a3958ccd1225841
-    m_Address: RT1280X720
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7b6a435bf42309a4c9c1156b8e9b4a03, type: 2}
   m_SchemaSet:

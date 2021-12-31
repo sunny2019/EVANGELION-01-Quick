@@ -18,7 +18,6 @@
 
         protected override async UniTask OnLoadSuccess()
         {
-            await base.OnLoadSuccess();
             mCtrl = mCtrlBase as DemoPanelCtrl;
             mParam = mOpenParam as DemoPanelScreenParam;
 
@@ -26,6 +25,11 @@
                                  "com%2Fnewsapp_bt%2F0%2F14140880260%2F1000&refer=http%3A%2F%2Finews.gtimg." +
                                  "com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1642173955&" +
                                  "t=8fdefe32030efcfb709f61c4d2c5bfe3", mCtrl.img_Head);
+            
+            mCtrl.btn_GetInfo.onClick.AddListener(() =>
+            {
+                NotificationsPanelScreen.ShowNotifications("测试", "测试内容").GetAwaiter();
+            });
         }
 
         private async UniTask DownLoadSprite(string url, Image image)

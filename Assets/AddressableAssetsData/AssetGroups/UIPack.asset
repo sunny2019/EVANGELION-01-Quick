@@ -21,8 +21,32 @@ MonoBehaviour:
     m_Address: UIDemoPanel
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: da0c6cb7b5c8c77438b99f06981817d6
-    m_Address: UIRoot
+  - m_GUID: 2b300ba86f3a4834da2d9a4f7af4b676
+    m_Address: UIEndPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c540bd4b43b5dc4c9630a58a7fc83e8
+    m_Address: UIHttpRequestPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 590e47afe64c50142a4f8eda92a38a05
+    m_Address: UILoadScenePanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 29791892556f8f3489ec98f0052aa1a6
+    m_Address: UIModalWindowPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eefd1b9cd630d3b4e9da017cef5acf22
+    m_Address: UIMultiContentTipsPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 224629d4a4ae3e04e828d4d15bec8cbf
+    m_Address: UINotificationsPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bec70b4bacec3f74da992a1b98295c2e
+    m_Address: UIWelcomePanel
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

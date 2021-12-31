@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: 
+  m_GroupName: Duplicate Asset Isolation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 07eba91c2ee80574abac30f1ad8dcd50
+  m_SerializeEntries:
+  - m_GUID: 68e6db2ebdc24f95958faec2be5558d6
+    m_Address: Assets/Res/Misc/TextMesh Pro/Shaders/TMP_SDF.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
+    m_Address: Assets/Res/Misc/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc146b466b24d47489218310b1773c5b
+    m_Address: Assets/ThirdParty/Modern UI Pack/Animations/Progress Bar/Material
+      Spinner.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4bd810f1cbcb0f446a8f5a31453e243f
+    m_Address: Assets/ThirdParty/Modern UI Pack/Fonts/OpenSans-Regular SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 54a8e79224dd1ed41bffbaa316ed272d
+    m_Address: Assets/ThirdParty/Modern UI Pack/Animations/Progress Bar/Material
+      Spinner.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e3265ab4bf004d28a9537516768c1c75
+    m_Address: Assets/Res/Misc/TextMesh Pro/Fonts/LiberationSans.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fa328c1ae3ffb6b4583cf371153b0be6
+    m_Address: Assets/ThirdParty/Modern UI Pack/Fonts/OpenSans-Bold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b03b7a4c74cd6294ca732f49684716ee
+    m_Address: Assets/ThirdParty/Modern UI Pack/Fonts/OpenSans-BoldItalic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff92caddbdea54743a04dda78cc41035
+    m_Address: Assets/ThirdParty/Modern UI Pack/Fonts/OpenSans-Italic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e4041c94a2181b243bd1912946bfbe63
+    m_Address: Assets/ThirdParty/Modern UI Pack/Fonts/OpenSans-ExtraBoldItalic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca60657c190bc8c4e89dfb3e23d76209
+    m_Address: Assets/ThirdParty/Modern UI Pack/Fonts/OpenSans-ExtraBold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2fa2e87466111d248a120d5382f354fc
+    m_Address: Assets/ThirdParty/Modern UI Pack/Animations/Button/Outline Button.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0dba7f4bcc17ba64a8acc762f75a6050
+    m_Address: Assets/Res/Sprites/CommonSprites/Borders/Circles/Circle Outline 64px
+      - Stroke 5px.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f03f625cc7127f244a2f4da835b92720
+    m_Address: Assets/Res/Sprites/CommonSprites/Borders/Basic/Basic Filled (200ppu).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f38987b2f12030947bea58483e18ce1a
+    m_Address: Assets/Res/Sprites/CommonSprites/Borders/Basic/Basic Filled 10px.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e2253fc5a4b357243ad2021031bd943a
+    m_Address: Assets/Res/Sprites/CommonSprites/Borders/Basic/Basic Outline - Stroke
+      5px (200ppu).png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7b6a435bf42309a4c9c1156b8e9b4a03, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d7ebf68dca72be44986ba5f073a45371, type: 2}
+    - {fileID: 11400000, guid: 70ea3dd7d510a49459f1eaf76663f92d, type: 2}

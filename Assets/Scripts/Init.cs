@@ -35,12 +35,12 @@ namespace Game
                     throw new ArgumentOutOfRangeException();
             }
 
+            await ELAudioManager.Init();
+            await ELUIManager.Init();
             
-             await ELUIManager.Init();
-             await ELUIManager.Ins.OpenUI<DemoPanelScreen>();
-
-            await Addressables.LoadSceneAsync("Scene_Main").Task;
-
+            
+            await LoadScenePanelScreen.LoadSingleScene(LoadSceneName.Scene_Main);
+            await ELUIManager.Ins.OpenUI<DemoPanelScreen>();
             //Destroy(gameObject);
         }
 

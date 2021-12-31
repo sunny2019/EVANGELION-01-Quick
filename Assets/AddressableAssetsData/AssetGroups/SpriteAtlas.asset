@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Assets/Res/Sprites/Main/spriteatlas_Main.spriteatlasv2
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 10720e803075eb4428ba377ae1f783b0
+    m_Address: Assets/ThirdParty/Modern UI Pack/Textures/Modern UI Pack.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e531583841a8e854e94f0c14b18fcba4
+    m_Address: Assets/Res/Sprites/CommonSprites/CommonSprites.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7b6a435bf42309a4c9c1156b8e9b4a03, type: 2}
   m_SchemaSet:
