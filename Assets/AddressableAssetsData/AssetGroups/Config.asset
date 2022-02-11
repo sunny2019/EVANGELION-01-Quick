@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Config
+  m_EditorClassIdentifier: 
+  m_GroupName: Config
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 90c0af880388a8e4db7c14e1cac3b13c
+  m_SerializeEntries:
+  - m_GUID: 7bd6a0fc9e8b61d41af7e4ab4f6c2867
+    m_Address: "DetailItemContent_\u57FA\u7840\u75C5\u8BA4\u77E5"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 86ad92e7fc7e6204a9c7046765479aa0
+    m_Address: "DetailItemContent_\u5B9E\u9A8C\u57FA\u7840"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe6fcede6f6bc4340a70b06d7c7f3ea2
+    m_Address: "LabQuestData_\u4E60\u9898"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7b6a435bf42309a4c9c1156b8e9b4a03, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8a4a23a07a2fd6d41923cac279e43cd6, type: 2}
+    - {fileID: 11400000, guid: 1a87f12ee5180cd4a96e2a3168f6ad2b, type: 2}

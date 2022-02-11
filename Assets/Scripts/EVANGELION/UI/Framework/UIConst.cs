@@ -10,5 +10,12 @@ namespace EVANGELION
         public const string  LoadScenePanel="UILoadScenePanel";
         public const string  EndPanel="UIEndPanel";
         public const string NotificationsPanel="UINotificationsPanel";
+
+        //模块选择面板
+        public const string MoudleChoicePanelScreen = "UIMoudleChoicePanel";
+        //习题面板
+        public const string ExercisePanel = "UIExercisePanel";
+        //实验报告面板
+        public const string ReportPanel = "UIReportPanel";
     }
 }

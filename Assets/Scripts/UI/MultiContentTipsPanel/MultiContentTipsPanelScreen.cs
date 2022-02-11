@@ -1,4 +1,6 @@
-﻿namespace Game.UI
+﻿using System;
+
+namespace Game.UI
 {
     using System.Collections.Generic;
     using Cysharp.Threading.Tasks;
@@ -10,6 +12,7 @@
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
     using UnityEngine.Video;
+
     public class MultiContentTipsPanelScreenParam : UIOpenScreenParameterBase
     {
         public MultiContentTipsType tipType;
@@ -110,7 +113,7 @@
             showObj.GetComponent<Animator>().Play("ShowContent");
 
 
-            EventTriggerUtility.Add(mCtrl.go_Background, EventTriggerType.PointerClick, (arg) => { mCtrl.StartCoroutine(mCtrl.Close(mParam.tipType)); });
+            ETTool.Add(mCtrl.go_Background, EventTriggerType.PointerClick, (arg) => { mCtrl.StartCoroutine(mCtrl.Close(mParam.tipType)); });
         }
 
         public static async UniTask ShowSpriteContent(Sprite content)
@@ -193,8 +196,8 @@
             }
         }
 
-
-        public class DetailItemContent
+        [CreateAssetMenu(order = 1, menuName = "ELConfigs/DetailItemContent")]
+        public class DetailItemContent : SerializedScriptableObject
         {
             public string title;
             public PromptClassification classify;
@@ -219,6 +222,7 @@
         /// <summary>
         /// 分页内容
         /// </summary>
+        [Serializable]
         public class PageContent
         {
             public string title;

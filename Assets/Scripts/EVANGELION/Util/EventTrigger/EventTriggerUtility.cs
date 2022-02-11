@@ -5,7 +5,7 @@
     using UnityEngine.Events;
     using UnityEngine.EventSystems;
 
-    public static class EventTriggerUtility
+    public static class ETTool
     {
         /// <summary>
         /// UI添加EventTrigger事件触发器,并绑定回调事件

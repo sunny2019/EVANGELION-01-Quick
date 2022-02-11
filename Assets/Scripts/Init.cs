@@ -40,7 +40,7 @@ namespace Game
             
             
             await LoadScenePanelScreen.LoadSingleScene(LoadSceneName.Scene_Main);
-            await ELUIManager.Ins.OpenUI<DemoPanelScreen>();
+            await ELUIManager.Ins.OpenUI<MoudleChoicePanelScreen>();
             //Destroy(gameObject);
         }
 

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: "DetailItemContent_\u57FA\u7840\u75C5\u8BA4\u77E5"
+  m_EditorClassIdentifier: Assembly-CSharp:Game.UI:MultiContentTipsPanelScreen/DetailItemContent
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  title: "\u57FA\u7840\u75C5\u8BA4\u77E5"
+  classify: 2
+  txtContent: 
+  spriteContent: {fileID: 0}
+  pageContents:
+  - title: "\u517B\u62A4\u8BA4\u77E5"
+    isSprite: 0
+    txtContent: "\u65E0\u5185\u5BB9"
+    spriteContent: {fileID: 0}
+  - title: "\u517B\u62A4\u4E8B\u9879"
+    isSprite: 0
+    txtContent: "\u65E0\u5185\u5BB9"
+    spriteContent: {fileID: 0}
+  - title: "\u75C5\u60C5\u9700\u8981"
+    isSprite: 0
+    txtContent: "\u65E0\u5185\u5BB9"
+    spriteContent: {fileID: 0}
