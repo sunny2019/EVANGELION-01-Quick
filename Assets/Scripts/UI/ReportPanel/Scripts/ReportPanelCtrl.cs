@@ -10,7 +10,8 @@
 
     public class ReportPanelCtrl : UICtrlBase
     {
-        [Title("实验报告分页")] public TMP_Text txt_Date;
+        [Title("实验报告分页")] public CanvasGroup panel;
+        public TMP_Text txt_Date;
         public TMP_Text txt_UseTime;
         public CustomDropdown dp_Conclusion;
         public TMP_InputField input_Conclusion;

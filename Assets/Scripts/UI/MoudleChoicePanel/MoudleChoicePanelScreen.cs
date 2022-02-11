@@ -75,13 +75,14 @@ namespace Game.UI
             ETTool.Add(mCtrl.btn_Moudle3, EventTriggerType.PointerExit, OnExitMoudleBtn);
             ETTool.Add(mCtrl.btn_Moudle4, EventTriggerType.PointerEnter, OnEnterMoudleBtn);
             ETTool.Add(mCtrl.btn_Moudle4, EventTriggerType.PointerExit, OnExitMoudleBtn);
+            ETTool.Add(mCtrl.img_umbrella, EventTriggerType.PointerEnter, OnEnterMoudleBtn);
+            ETTool.Add(mCtrl.img_umbrella, EventTriggerType.PointerExit, OnExitMoudleBtn);
         }
 
         private void OnEnterToolBarBtn(BaseEventData arg0)
         {
             PointerEventData PEData = arg0 as PointerEventData;
             PEData.pointerEnter.GetComponentInParent<Button>().GetComponentInChildren<CanvasGroup>().DOFade(1f,0.5f);
-            PEData.pointerEnter.GetComponentInParent<Button>().GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.5f);
 
         }
 
@@ -89,19 +90,18 @@ namespace Game.UI
         {
             PointerEventData PEData = arg0 as PointerEventData;
             PEData.pointerEnter.GetComponentInParent<Button>().GetComponentInChildren<CanvasGroup>().DOFade(0,0.5f);
-            PEData.pointerEnter.GetComponentInParent<Button>().GetComponentInChildren<TMP_Text>().DOColor(Color.gray, 0.5f);
         }
 
         private void OnEnterMoudleBtn(BaseEventData arg0)
         {
             PointerEventData PEData = arg0 as PointerEventData;
-            PEData.pointerEnter.GetComponentInParent<Button>().transform.DOScale(1.2f, 0.5f);
+            PEData.pointerEnter.transform.DOScale(1.2f, 0.5f);
         }
 
         private void OnExitMoudleBtn(BaseEventData arg0)
         {
             PointerEventData PEData = arg0 as PointerEventData;
-            PEData.pointerEnter.GetComponentInParent<Button>().transform.DOScale(1, 0.5f);
+            PEData.pointerEnter.transform.DOScale(1, 0.5f);
         }
         
         #endregion

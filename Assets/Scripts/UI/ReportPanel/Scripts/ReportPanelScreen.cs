@@ -1,4 +1,6 @@
-﻿namespace Game.UI
+﻿using DG.Tweening;
+
+namespace Game.UI
 {
     using System;
     using System.Collections.Generic;
@@ -29,6 +31,7 @@
             //初始化实验报告
             InitReport();
             InitRepotItems();
+            mCtrl.panel.DOFade(1, 0.5f);
         }
 
         #region 初始化实验报告

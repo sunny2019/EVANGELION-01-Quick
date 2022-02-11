@@ -6,6 +6,10 @@ namespace Game.UI
 
     public class MoudleChoicePanelCtrl : UICtrlBase
     {
+        #region effect
+        public GameObject img_umbrella;
+        #endregion
+        
         public GameObject btn_ExpBasis;
         public GameObject btn_Exercise;
         public GameObject btn_Report;

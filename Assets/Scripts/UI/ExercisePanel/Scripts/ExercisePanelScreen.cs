@@ -1,4 +1,6 @@
-﻿namespace Game.UI
+﻿using DG.Tweening;
+
+namespace Game.UI
 {
     using System.Collections.Generic;
     using Cysharp.Threading.Tasks;
@@ -31,6 +33,7 @@
             currentLabQuestData = await Addressables.LoadAssetAsync<LabQuestData>(mParam.exerciseName);
             //初始化实验习题
             InitQuestion();
+            mCtrl.panel.DOFade(1, 0.5f);
         }
 
         public static async UniTask ShowExercise(string exerciseName, Action<string, int> commitCallBack)
