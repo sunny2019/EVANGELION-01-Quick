@@ -1,12 +1,9 @@
 Shader "HighlightPlus/Geometry/InnerGlow" {
 Properties {
     _MainTex ("Texture", 2D) = "white" {}
-    _Color ("Color", Color) = (1,1,1) // not used; dummy property to avoid inspector warning "material has no _Color property"
-    _InnerGlowColor ("Inner Glow Color", Color) = (1,1,1,1)
-    _InnerGlowWidth ("Width", Float) = 1.0
+    _Color ("Color", Color) = (1,1,1,1)
+    _Width ("Width", Float) = 1.0
     _CutOff("CutOff", Float ) = 0.5
-    _Cull ("Cull Mode", Int) = 2
-    _InnerGlowZTest ("ZTest", Int) = 4
 }
     SubShader
     {
@@ -15,25 +12,22 @@ Properties {
         // Inner Glow
         Pass
         {
-        	Stencil {
-                Ref 4
-                ReadMask 4
-                Comp NotEqual
-                Pass keep
+           	Stencil {
+                Ref 2
+                Comp Equal
+                Pass keep 
             }
             Blend SrcAlpha One
             ZWrite Off
             Offset -1, -1
             ZTest [_InnerGlowZTest]
-            Cull [_Cull]
 
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_local _ HP_ALPHACLIP
+            #pragma multi_compile _ HP_ALPHACLIP
 
             #include "UnityCG.cginc"
-            #include "CustomVertexTransform.cginc"
 
             struct appdata
             {
@@ -55,8 +49,8 @@ Properties {
             sampler _MainTex;
             float4 _MainTex_ST;
             fixed _CutOff;
-      		fixed4 _InnerGlowColor;
-      		fixed _InnerGlowWidth;
+      		fixed4 _Color;
+      		fixed _Width;
 
 
             v2f vert (appdata v)
@@ -65,7 +59,7 @@ Properties {
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_INITIALIZE_OUTPUT(v2f, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-                o.pos = ComputeVertexPosition(v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 o.wpos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.normal = UnityObjectToWorldNormal(v.normal);
                 o.uv = TRANSFORM_TEX (v.uv, _MainTex);
@@ -80,8 +74,8 @@ Properties {
                 #endif
             
             	float3 viewDir = normalize(i.wpos - _WorldSpaceCameraPos.xyz);
-            	fixed dx = saturate(_InnerGlowWidth - abs(dot(viewDir, normalize(i.normal)))) / _InnerGlowWidth;
-                fixed4 col = _InnerGlowColor * dx;
+            	fixed dx = saturate(_Width - abs(dot(viewDir, normalize(i.normal)))) / _Width;
+                fixed4 col = _Color * dx;
 				return col;
             }
             ENDCG

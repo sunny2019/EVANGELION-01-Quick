@@ -24,11 +24,10 @@ Properties {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_local _ HP_ALPHACLIP
-            #pragma multi_compile_local _ HP_DEPTHCLIP
+            #pragma multi_compile _ HP_ALPHACLIP
+            #pragma multi_compile _ HP_DEPTHCLIP
 
             #include "UnityCG.cginc"
-            #include "CustomVertexTransform.cginc"
 
             sampler _MainTex;
             #if HP_DEPTHCLIP
@@ -53,7 +52,6 @@ Properties {
                     float depth   : TEXCOORD1;
                     float4 scrPos : TEXCOORD2;
                 #endif
-                UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
@@ -62,9 +60,8 @@ Properties {
 				v2f o;
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_INITIALIZE_OUTPUT(v2f, o);
-                UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-				o.pos = ComputeVertexPosition(v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX (v.uv, _MainTex);
                 #if HP_DEPTHCLIP
                     o.depth = COMPUTE_DEPTH_01;
@@ -75,17 +72,15 @@ Properties {
             
             fixed4 frag (v2f i) : SV_Target
             {
-                UNITY_SETUP_INSTANCE_ID(i);
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+                #if HP_DEPTHCLIP
+                    float vz = Linear01Depth(UNITY_SAMPLE_DEPTH(UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, i.scrPos.xy / i.scrPos.w )));
+                    clip( vz - i.depth * 0.999);
+                #endif
 
             	#if HP_ALPHACLIP
             	    fixed4 col = tex2D(_MainTex, i.uv);
             	    clip(col.a - _CutOff);
             	#endif
-                #if HP_DEPTHCLIP
-                    float vz = Linear01Depth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, UnityStereoTransformScreenSpaceTex(i.scrPos.xy / i.scrPos.w )));
-                    clip( vz - i.depth * 0.999);
-                #endif
 
             	return fixed4(1.0, 1.0, 1.0, 1.0);
             }

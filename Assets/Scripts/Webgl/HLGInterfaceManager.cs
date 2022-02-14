@@ -162,8 +162,7 @@ namespace HLGInterface
 
             unityWeb.downloadHandler = new DownloadHandlerBuffer();
             yield return unityWeb.SendWebRequest();
-
-            if (unityWeb.result == UnityWebRequest.Result.ConnectionError || unityWeb.result == UnityWebRequest.Result.ProtocolError)
+            if (unityWeb.isHttpError|| unityWeb.isNetworkError)
             {
                 //Debug.Log("failure:" + unityWeb.error);
                 failureCallBack?.Invoke();
@@ -208,7 +207,7 @@ namespace HLGInterface
             unityWeb.downloadHandler = new DownloadHandlerBuffer();
             yield return unityWeb.SendWebRequest();
 
-            if (unityWeb.result == UnityWebRequest.Result.ConnectionError || unityWeb.result == UnityWebRequest.Result.ProtocolError)
+            if (unityWeb.isHttpError|| unityWeb.isNetworkError)
             {
                 //Debug.Log("failure:" + unityWeb.error);
                 failureCallBack?.Invoke();

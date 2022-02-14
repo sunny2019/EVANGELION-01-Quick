@@ -14,7 +14,6 @@
 			#pragma fragment frag
 
 			#include "UnityCG.cginc"
-			#include "CustomVertexTransform.cginc"
 
 			struct appdata
 			{
@@ -35,7 +34,7 @@
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_INITIALIZE_OUTPUT(v2f, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-				o.pos = ComputeVertexPosition(v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
 			

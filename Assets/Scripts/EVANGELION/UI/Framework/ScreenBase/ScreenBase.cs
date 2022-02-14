@@ -25,6 +25,7 @@ namespace EVANGELION
        
         public  async UniTask StartLoad( UIOpenScreenParameterBase param = null)
         {
+            
             mOpenParam = param;
             var ctrl = (await Addressables.InstantiateAsync(mResName,ELUIManager.Ins.GetUIRootTransform()).Task).gameObject;
             await PanelLoadComplete(ctrl);

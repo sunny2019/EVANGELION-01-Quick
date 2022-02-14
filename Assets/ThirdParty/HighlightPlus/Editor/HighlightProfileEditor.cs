@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -9,26 +9,19 @@ namespace HighlightPlus {
     [CanEditMultipleObjects]
     public class HighlightProfileEditor : Editor {
 
-        SerializedProperty effectGroup, effectGroupLayer, effectNameFilter, combineMeshes, alphaCutOff, cullBackFaces;
-        SerializedProperty overlay, overlayColor, overlayAnimationSpeed, overlayMinIntensity, overlayTexture, overlayTextureScale, overlayBlending;
-        SerializedProperty fadeInDuration, fadeOutDuration, constantWidth, normalsOption;
+        SerializedProperty overlay, overlayColor, overlayAnimationSpeed, overlayMinIntensity, overlayBlending, effectGroup, effectGroupLayer, alphaCutOff, cullBackFaces;
+        SerializedProperty fadeInDuration, fadeOutDuration, constantWidth, smoothNormals;
         SerializedProperty outline, outlineColor, outlineWidth, outlineQuality, outlineDownsampling, outlineVisibility, outlineIndependent;
-        SerializedProperty glow, glowWidth, glowQuality, glowDownsampling, glowHQColor, glowDithering, glowMagicNumber1, glowMagicNumber2, glowAnimationSpeed;
-        SerializedProperty glowBlendPasses, glowVisibility, glowPasses;
+        SerializedProperty glow, glowWidth, glowQuality, glowDownsampling, glowHQColor, glowDithering, glowMagicNumber1, glowMagicNumber2, glowAnimationSpeed, glowVisibility, glowPasses;
         SerializedProperty innerGlow, innerGlowWidth, innerGlowColor, innerGlowVisibility;
-        SerializedProperty targetFX, targetFXTexture, targetFXColor, targetFXRotationSpeed, targetFXInitialScale, targetFXEndScale, targetFXScaleToRenderBound;
-        SerializedProperty targetFXAlignToGround, targetFXFadePower, targetFXGroundMaxDistance, targetFXGroundLayerMask, targetFXScaleToRenderBounds, targetFXTransitionDuration, targetFXStayDuration, targetFXVisibility;
-        SerializedProperty seeThrough, seeThroughOccluderMask, seeThroughOccluderMaskAccurate, seeThroughOccluderThreshold, seeThroughOccluderCheckInterval, seeThroughOccluderCheckIndividualObjects, seeThroughDepthOffset, seeThroughMaxDepth;
-		SerializedProperty seeThroughIntensity, seeThroughTintAlpha, seeThroughTintColor, seeThroughNoise, seeThroughBorder, seeThroughBorderWidth, seeThroughBorderColor, seeThroughOrdered;
-        SerializedProperty hitFxInitialIntensity, hitFxMode, hitFxFadeOutDuration, hitFxColor, hitFxRadius;
+        SerializedProperty targetFX, targetFXTexture, targetFXColor, targetFXRotationSpeed, targetFXInitialScale, targetFXEndScale, targetFXTransitionDuration, targetFXStayDuration;
+        SerializedProperty seeThrough, seeThroughIntensity, seeThroughTintAlpha, seeThroughTintColor, seeThroughNoise;
 
         void OnEnable() {
             effectGroup = serializedObject.FindProperty("effectGroup");
             effectGroupLayer = serializedObject.FindProperty("effectGroupLayer");
-            effectNameFilter = serializedObject.FindProperty("effectNameFilter");
-            combineMeshes = serializedObject.FindProperty("combineMeshes");
             alphaCutOff = serializedObject.FindProperty("alphaCutOff");
-            normalsOption = serializedObject.FindProperty("normalsOption");
+            smoothNormals = serializedObject.FindProperty("smoothNormals");
             cullBackFaces = serializedObject.FindProperty("cullBackFaces");
             fadeInDuration = serializedObject.FindProperty("fadeInDuration");
             fadeOutDuration = serializedObject.FindProperty("fadeOutDuration");
@@ -38,8 +31,6 @@ namespace HighlightPlus {
             overlayAnimationSpeed = serializedObject.FindProperty("overlayAnimationSpeed");
             overlayMinIntensity = serializedObject.FindProperty("overlayMinIntensity");
             overlayBlending = serializedObject.FindProperty("overlayBlending");
-            overlayTexture = serializedObject.FindProperty("overlayTexture");
-            overlayTextureScale = serializedObject.FindProperty("overlayTextureScale");
             outline = serializedObject.FindProperty("outline");
             outlineColor = serializedObject.FindProperty("outlineColor");
             outlineWidth = serializedObject.FindProperty("outlineWidth");
@@ -57,7 +48,6 @@ namespace HighlightPlus {
             glowMagicNumber1 = serializedObject.FindProperty("glowMagicNumber1");
             glowMagicNumber2 = serializedObject.FindProperty("glowMagicNumber2");
             glowAnimationSpeed = serializedObject.FindProperty("glowAnimationSpeed");
-            glowBlendPasses = serializedObject.FindProperty("glowBlendPasses");
             glowVisibility = serializedObject.FindProperty("glowVisibility");
             glowPasses = serializedObject.FindProperty("glowPasses");
             innerGlow = serializedObject.FindProperty("innerGlow");
@@ -69,36 +59,14 @@ namespace HighlightPlus {
             targetFXRotationSpeed = serializedObject.FindProperty("targetFXRotationSpeed");
             targetFXInitialScale = serializedObject.FindProperty("targetFXInitialScale");
             targetFXEndScale = serializedObject.FindProperty("targetFXEndScale");
-            targetFXScaleToRenderBounds = serializedObject.FindProperty("targetFXScaleToRenderBounds");
-            targetFXAlignToGround = serializedObject.FindProperty("targetFXAlignToGround");
-            targetFXGroundMaxDistance = serializedObject.FindProperty("targetFXGroundMaxDistance");
-            targetFXGroundLayerMask = serializedObject.FindProperty("targetFXGroundLayerMask");
-            targetFXFadePower = serializedObject.FindProperty("targetFXFadePower");
             targetFXColor = serializedObject.FindProperty("targetFXColor");
             targetFXTransitionDuration = serializedObject.FindProperty("targetFXTransitionDuration");
             targetFXStayDuration = serializedObject.FindProperty("targetFXStayDuration");
-            targetFXVisibility = serializedObject.FindProperty("targetFXVisibility");
             seeThrough = serializedObject.FindProperty("seeThrough");
-            seeThroughOccluderMask = serializedObject.FindProperty("seeThroughOccluderMask");
-            seeThroughOccluderMaskAccurate = serializedObject.FindProperty("seeThroughOccluderMaskAccurate");
-            seeThroughOccluderThreshold = serializedObject.FindProperty("seeThroughOccluderThreshold");
-            seeThroughOccluderCheckInterval = serializedObject.FindProperty("seeThroughOccluderCheckInterval");
-            seeThroughOccluderCheckIndividualObjects = serializedObject.FindProperty("seeThroughOccluderCheckIndividualObjects");
-            seeThroughDepthOffset = serializedObject.FindProperty("seeThroughDepthOffset");
-            seeThroughMaxDepth = serializedObject.FindProperty("seeThroughMaxDepth");
             seeThroughIntensity = serializedObject.FindProperty("seeThroughIntensity");
             seeThroughTintAlpha = serializedObject.FindProperty("seeThroughTintAlpha");
             seeThroughTintColor = serializedObject.FindProperty("seeThroughTintColor");
             seeThroughNoise = serializedObject.FindProperty("seeThroughNoise");
-            seeThroughBorder = serializedObject.FindProperty("seeThroughBorder");
-            seeThroughBorderWidth = serializedObject.FindProperty("seeThroughBorderWidth");
-            seeThroughBorderColor = serializedObject.FindProperty("seeThroughBorderColor");
-            seeThroughOrdered = serializedObject.FindProperty("seeThroughOrdered");
-            hitFxInitialIntensity = serializedObject.FindProperty("hitFxInitialIntensity");
-            hitFxMode = serializedObject.FindProperty("hitFxMode");
-            hitFxFadeOutDuration = serializedObject.FindProperty("hitFxFadeOutDuration");
-            hitFxColor = serializedObject.FindProperty("hitFxColor");
-            hitFxRadius = serializedObject.FindProperty("hitFxRadius");
         }
 
         public override void OnInspectorGUI() {
@@ -113,26 +81,17 @@ namespace HighlightPlus {
                 EditorGUILayout.PropertyField(effectGroupLayer, new GUIContent("Layer"));
                 EditorGUI.indentLevel--;
             }
-            if (effectGroup.intValue != (int)TargetOptions.OnlyThisObject && effectGroup.intValue != (int)TargetOptions.Scripting) {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(effectNameFilter, new GUIContent("Object Name Filter"));
-                EditorGUILayout.PropertyField(combineMeshes);
-                EditorGUI.indentLevel--;
-            }
             EditorGUILayout.PropertyField(alphaCutOff);
             EditorGUILayout.PropertyField(cullBackFaces);
-            EditorGUILayout.PropertyField(normalsOption);
+            EditorGUILayout.PropertyField(smoothNormals);
             EditorGUILayout.PropertyField(fadeInDuration);
             EditorGUILayout.PropertyField(fadeOutDuration);
             EditorGUILayout.PropertyField(constantWidth);
-
-            EditorGUILayout.Separator();
-            EditorGUILayout.LabelField("Effects", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(outline);
             EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(outlineWidth, new GUIContent("Width"));
             EditorGUILayout.PropertyField(outlineColor, new GUIContent("Color"));
-            HighlightEffectEditor.QualityPropertyField(outlineQuality);
+            EditorGUILayout.PropertyField(outlineQuality, new GUIContent("Quality", "Default and High use a mesh displacement technique. Highest quality can provide best look and also performance depending on the complexity of mesh."));
             if (outlineQuality.intValue == (int)QualityLevel.Highest) {
                 EditorGUILayout.PropertyField(outlineDownsampling, new GUIContent("Downsampling"));
             }
@@ -146,11 +105,11 @@ namespace HighlightPlus {
             EditorGUILayout.PropertyField(glow, new GUIContent("Outer Glow"));
             EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(glowWidth, new GUIContent("Width"));
-            HighlightEffectEditor.QualityPropertyField(glowQuality);
+            EditorGUILayout.PropertyField(glowQuality, new GUIContent("Quality", "Default and High use a mesh displacement technique. Highest quality can provide best look and also performance depending on the complexity of mesh."));
             if (glowQuality.intValue == (int)QualityLevel.Highest) {
                 EditorGUILayout.PropertyField(glowDownsampling, new GUIContent("Downsampling"));
-                EditorGUILayout.PropertyField(glowHQColor, new GUIContent("Color"));
             }
+            EditorGUILayout.PropertyField(glowHQColor, new GUIContent("Color"));
             EditorGUILayout.PropertyField(glowAnimationSpeed, new GUIContent("Animation Speed"));
             EditorGUILayout.PropertyField(glowVisibility, new GUIContent("Visibility"));
             if (glowQuality.intValue != (int)QualityLevel.Highest) {
@@ -161,7 +120,6 @@ namespace HighlightPlus {
                     EditorGUILayout.PropertyField(glowMagicNumber2, new GUIContent("Magic Number 2"));
                     EditorGUI.indentLevel--;
                 }
-                EditorGUILayout.PropertyField(glowBlendPasses, new GUIContent("Blend Passes"));
                 EditorGUILayout.PropertyField(glowPasses, true);
             }
             EditorGUI.indentLevel--;
@@ -174,10 +132,6 @@ namespace HighlightPlus {
             EditorGUILayout.PropertyField(overlay);
             EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(overlayColor, new GUIContent("Color"));
-            EditorGUILayout.PropertyField(overlayTexture, new GUIContent("Texture"));
-            if (overlayTexture.objectReferenceValue != null) {
-                EditorGUILayout.PropertyField(overlayTextureScale, new GUIContent("Texture Scale"));
-            }
             EditorGUILayout.PropertyField(overlayBlending, new GUIContent("Blending"));
             EditorGUILayout.PropertyField(overlayMinIntensity, new GUIContent("Min Intensity"));
             EditorGUILayout.PropertyField(overlayAnimationSpeed, new GUIContent("Animation Speed"));
@@ -189,58 +143,21 @@ namespace HighlightPlus {
             EditorGUILayout.PropertyField(targetFXRotationSpeed, new GUIContent("Rotation Speed"));
             EditorGUILayout.PropertyField(targetFXInitialScale, new GUIContent("Initial Scale"));
             EditorGUILayout.PropertyField(targetFXEndScale, new GUIContent("End Scale"));
-            EditorGUILayout.PropertyField(targetFXScaleToRenderBounds, new GUIContent("Scale To Object Bounds"));
-            EditorGUILayout.PropertyField(targetFXAlignToGround, new GUIContent("Align To Ground"));
-            if (targetFXAlignToGround.boolValue) {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(targetFXGroundMaxDistance, new GUIContent("Ground Max Distance"));
-                EditorGUILayout.PropertyField(targetFXGroundLayerMask, new GUIContent("Ground Layer Mask"));
-                EditorGUILayout.PropertyField(targetFXFadePower, new GUIContent("Fade Power"));
-                EditorGUI.indentLevel--;
-            }
             EditorGUILayout.PropertyField(targetFXTransitionDuration, new GUIContent("Transition Duration"));
             EditorGUILayout.PropertyField(targetFXStayDuration, new GUIContent("Stay Duration"));
-            EditorGUILayout.PropertyField(targetFXVisibility, new GUIContent("Visibility"));
             EditorGUI.indentLevel--;
+
+            EditorGUILayout.Separator();
+            EditorGUILayout.LabelField("See-Through Options", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(seeThrough);
             EditorGUI.indentLevel++;
-            EditorGUILayout.PropertyField(seeThroughOccluderMask, new GUIContent("Occluder Layer"));
-            if (seeThroughOccluderMask.intValue > 0) {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(seeThroughOccluderMaskAccurate, new GUIContent("Accurate"));
-                EditorGUILayout.PropertyField(seeThroughOccluderThreshold, new GUIContent("Radius Threshold", "Multiplier to the object bounds. Making the bounds smaller prevents false occlusion tests."));
-                EditorGUILayout.PropertyField(seeThroughOccluderCheckInterval, new GUIContent("Check Interval", "Interval in seconds between occlusion tests."));
-                EditorGUILayout.PropertyField(seeThroughOccluderCheckIndividualObjects, new GUIContent("Check Individual Objects", "Interval in seconds between occlusion tests."));
-                EditorGUI.indentLevel--;
-            }
-            EditorGUILayout.PropertyField(seeThroughDepthOffset, new GUIContent("Depth Offset" + ((seeThroughDepthOffset.floatValue > 0) ? " •" : "")));
-            EditorGUILayout.PropertyField(seeThroughMaxDepth, new GUIContent("Max Depth" + ((seeThroughMaxDepth.floatValue > 0) ? " •" : "")));
             EditorGUILayout.PropertyField(seeThroughIntensity, new GUIContent("Intensity"));
             EditorGUILayout.PropertyField(seeThroughTintColor, new GUIContent("Color"));
             EditorGUILayout.PropertyField(seeThroughTintAlpha, new GUIContent("Color Blend"));
             EditorGUILayout.PropertyField(seeThroughNoise, new GUIContent("Noise"));
-            EditorGUILayout.PropertyField(seeThroughBorder, new GUIContent("Border When Hidden"));
-            if (seeThroughBorder.floatValue > 0) {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(seeThroughBorderWidth, new GUIContent("Width"));
-                EditorGUILayout.PropertyField(seeThroughBorderColor, new GUIContent("Color"));
-                EditorGUI.indentLevel--;
-            }
-            EditorGUILayout.PropertyField(seeThroughOrdered, new GUIContent("Ordered"));
-
-            EditorGUI.indentLevel--;
-            EditorGUILayout.LabelField("Hit FX");
-            EditorGUI.indentLevel++;
-            EditorGUILayout.PropertyField(hitFxInitialIntensity, new GUIContent("Initial Intensity"));
-            EditorGUILayout.PropertyField(hitFxMode, new GUIContent("Mode"));
-            EditorGUILayout.PropertyField(hitFxFadeOutDuration, new GUIContent("Fade Out Duration"));
-            EditorGUILayout.PropertyField(hitFxColor, new GUIContent("Color"));
-            if ((HitFxMode)hitFxMode.intValue == HitFxMode.LocalHit) {
-                EditorGUILayout.PropertyField(hitFxRadius, new GUIContent("Radius"));
-            }
             EditorGUI.indentLevel--;
 
-            if (serializedObject.ApplyModifiedProperties() || (Event.current.type == EventType.ValidateCommand &&
+            if (serializedObject.ApplyModifiedProperties() || (Event.current.type == EventType.ExecuteCommand &&
                 Event.current.commandName == "UndoRedoPerformed")) {
 
                 // Triggers profile reload on all Highlight Effect scripts

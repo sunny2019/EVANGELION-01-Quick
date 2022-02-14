@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 96060cb037ca4da9b9bb4a484074b39c, type: 3}
   m_Name: "DetailItemContent_\u57FA\u7840\u75C5\u8BA4\u77E5"
   m_EditorClassIdentifier: Assembly-CSharp:Game.UI:MultiContentTipsPanelScreen/DetailItemContent
   serializationData:
@@ -21,20 +21,28 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  title: "\u57FA\u7840\u75C5\u8BA4\u77E5"
+  title: 
   classify: 2
   txtContent: 
   spriteContent: {fileID: 0}
   pageContents:
-  - title: "\u517B\u62A4\u8BA4\u77E5"
+  - title: "\u6D4B\u8BD5"
     isSprite: 0
-    txtContent: "\u65E0\u5185\u5BB9"
+    txtContent: "\u6D4B\u8BD5"
     spriteContent: {fileID: 0}
-  - title: "\u517B\u62A4\u4E8B\u9879"
+  - title: "\u6D4B\u8BD5"
     isSprite: 0
-    txtContent: "\u65E0\u5185\u5BB9"
+    txtContent: "\u6D4B\u8BD5"
     spriteContent: {fileID: 0}
-  - title: "\u75C5\u60C5\u9700\u8981"
+  - title: "\u6D4B\u8BD5"
     isSprite: 0
-    txtContent: "\u65E0\u5185\u5BB9"
+    txtContent: "\u6D4B\u8BD5"
+    spriteContent: {fileID: 0}
+  - title: "\u6D4B\u8BD5"
+    isSprite: 0
+    txtContent: "\u6D4B\u8BD5"
+    spriteContent: {fileID: 0}
+  - title: "\u6D4B\u8BD5"
+    isSprite: 0
+    txtContent: "\u6D4B\u8BD5"
     spriteContent: {fileID: 0}

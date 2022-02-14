@@ -1,4 +1,6 @@
-﻿namespace EVANGELION
+﻿
+
+namespace EVANGELION
 {
     using System;
     using System.Collections.Generic;

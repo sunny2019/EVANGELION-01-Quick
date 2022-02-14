@@ -1,8 +1,10 @@
 ﻿Shader "HighlightPlus/Geometry/BlurGlow" {
 Properties {
+    _MainTex ("Texture", Any) = "white" {}
     _Color ("Color", Color) = (1,1,0) // not used; dummy property to avoid inspector warning "material has no _Color property"
     _BlurScale("Blur Scale", Float) = 2.0
     _Speed("Speed", Float) = 1
+	_StereoRendering("Stereo Rendering Correction", Float) = 1
 }
     SubShader
     {
@@ -16,8 +18,7 @@ Properties {
 	UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 	float4     _MainTex_TexelSize;
 	float4     _MainTex_ST;
-	float     _BlurScale, _Speed;
-	float     _AspectRatio;
+	float     _BlurScale, _Speed, _StereoRendering;
 
     struct appdata {
     	float4 vertex : POSITION;
@@ -41,13 +42,16 @@ Properties {
 		UNITY_SETUP_INSTANCE_ID(v);
 		UNITY_TRANSFER_INSTANCE_ID(v, o);
 		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
-		o.pos = v.vertex;
-		o.pos.y *= _ProjectionParams.x;
-
-		o.uv = v.texcoord;
-		float3 offsets = _MainTex_TexelSize.xyx * float3(1, _AspectRatio, -1);
-
+    	o.pos = UnityObjectToClipPos(v.vertex);
+		#if UNITY_UV_STARTS_AT_TOP
+    	if (_MainTex_TexelSize.y < 0) {
+	        // Texture is inverted WRT the main texture
+    	    v.texcoord.y = 1.0 - v.texcoord.y;
+    	}
+    	#endif   
+    	o.uv = v.texcoord;
+		float3 offsets = _MainTex_TexelSize.xyx * float3(1,1,-1);
+		offsets.xz *= _StereoRendering;
 		o.uv1 = v.texcoord - offsets.xy;
 		o.uv2 = v.texcoord - offsets.zy;
 		o.uv3 = v.texcoord + offsets.zy;
@@ -61,16 +65,21 @@ Properties {
 		UNITY_SETUP_INSTANCE_ID(v);
 		UNITY_TRANSFER_INSTANCE_ID(v, o);
 		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
-		o.pos = v.vertex;
-		o.pos.y *= _ProjectionParams.x;
-
+    	o.pos = UnityObjectToClipPos(v.vertex);
+		#if UNITY_UV_STARTS_AT_TOP
+    	if (_MainTex_TexelSize.y < 0) {
+	        // Texture is inverted WRT the main texture
+    	    v.texcoord.y = 1.0 - v.texcoord.y;
+    	}
+    	#endif   
 		float animatedWidth = _BlurScale * (1.0 + 0.25 * sin(_Time.w * _Speed));
     	o.uv = v.texcoord;
 		float2 inc = float2(_MainTex_TexelSize.x * 1.3846153846 * animatedWidth, 0);
+		inc.x *= _StereoRendering;
     	o.uv1 = v.texcoord - inc;	
 		o.uv2 = v.texcoord + inc;
 		float2 inc2 = float2(_MainTex_TexelSize.x * 3.2307692308 * animatedWidth, 0);	
+		inc2.x *= _StereoRendering;
 		o.uv3 = v.texcoord - inc2;
     	o.uv4 = v.texcoord + inc2;	
 		return o;
@@ -81,11 +90,14 @@ Properties {
 		UNITY_SETUP_INSTANCE_ID(v);
 		UNITY_TRANSFER_INSTANCE_ID(v, o);
 		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
-		o.pos = v.vertex;
-		o.pos.y *= _ProjectionParams.x;
-
-		float animatedWidth = _AspectRatio * _BlurScale * (1.0 + 0.25 * sin(_Time.w * _Speed));
+    	o.pos = UnityObjectToClipPos(v.vertex);
+		#if UNITY_UV_STARTS_AT_TOP
+    	if (_MainTex_TexelSize.y < 0) {
+	        // Texture is inverted WRT the main texture
+    	    v.texcoord.y = 1.0 - v.texcoord.y;
+    	}
+    	#endif   
+		float animatedWidth = _BlurScale * (1.0 + 0.25 * sin(_Time.w * _Speed));
     	o.uv = v.texcoord;
     	float2 inc = float2(0, _MainTex_TexelSize.y * 1.3846153846 * animatedWidth);	
     	o.uv1 = v.texcoord - inc;	
@@ -97,8 +109,8 @@ Properties {
 	}
 	
 	float4 fragBlur (v2fCross i): SV_Target {
-		UNITY_SETUP_INSTANCE_ID(i);
-        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+		//UNITY_SETUP_INSTANCE_ID(i);
+        //UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 		float4 pixel = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv) * 0.2270270270
 					+ (UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv1) + UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv2)) * 0.3162162162
 					+ (UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv3) + UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv4)) * 0.0702702703;
@@ -106,8 +118,8 @@ Properties {
 	}	
 
 	float4 fragResample(v2fCross i) : SV_Target {
-		UNITY_SETUP_INSTANCE_ID(i);
-        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+		//UNITY_SETUP_INSTANCE_ID(i);
+        //UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 		float4 c1 = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv1);
 		float4 c2 = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv2);
 		float4 c3 = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv3);

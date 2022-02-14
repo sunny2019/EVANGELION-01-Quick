@@ -1,5 +1,4 @@
 ﻿
-
 namespace Game.UI
 {
     using EVANGELION;
@@ -27,7 +26,7 @@ namespace Game.UI
             mParam = mOpenParam as MoudleChoicePanelScreenParam;
             EffectListener();
 
-            mCtrl.expBasisContent= await Addressables.LoadAssetAsync<MultiContentTipsPanelScreen.DetailItemContent>("DetailItemContent_实验基础");
+            mCtrl.expBasisContent= await Addressables.LoadAssetAsync<DetailItemContent>("DetailItemContent_实验基础");
             ETTool.Add(mCtrl.btn_ExpBasis, EventTriggerType.PointerClick, (eventData) =>
             {
                 if (mCtrl.expBasisContent!=null)
@@ -44,7 +43,7 @@ namespace Game.UI
             {
                 ELUIManager.Ins.OpenUI<ReportPanelScreen>();
             });
-            mCtrl.moudle1Content= await Addressables.LoadAssetAsync<MultiContentTipsPanelScreen.DetailItemContent>("DetailItemContent_基础病认知");
+            mCtrl.moudle1Content= await Addressables.LoadAssetAsync<DetailItemContent>("DetailItemContent_基础病认知");
             ETTool.Add(mCtrl.btn_Moudle1, EventTriggerType.PointerClick, (eventData) =>
             {
                 if (mCtrl.moudle1Content!=null)

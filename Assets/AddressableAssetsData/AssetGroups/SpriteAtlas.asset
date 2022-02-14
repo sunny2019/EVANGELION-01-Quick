@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 24ef8a2c477d14943a7fa73b86a33084
   m_SerializeEntries:
-  - m_GUID: f229df6e974a489418c4e1c5bae15632
-    m_Address: Assets/Res/Sprites/Main/spriteatlas_Main.spriteatlasv2
+  - m_GUID: 3f7b54a1771d8364e9c94f8e2e7e6077
+    m_Address: Assets/Res/Sprites/spriteatlas_Main.spriteatlas
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 10720e803075eb4428ba377ae1f783b0

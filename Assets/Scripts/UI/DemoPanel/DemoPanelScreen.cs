@@ -35,7 +35,13 @@
         private async UniTask DownLoadSprite(string url, Image image)
         {
             var asyncRequest = await UnityWebRequest.Get(url).SendWebRequest();
-            if (asyncRequest.result == UnityWebRequest.Result.Success)
+            if (asyncRequest.isHttpError|| asyncRequest.isNetworkError)
+            {
+                Debug.LogError("请求失败");
+                return;
+            }
+
+            if (asyncRequest.isDone)
             {
                 byte[] texBytes = asyncRequest.downloadHandler.data;
                 Texture2D tex = new Texture2D(300, 300);
