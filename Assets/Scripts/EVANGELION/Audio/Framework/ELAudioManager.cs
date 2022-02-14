@@ -2,7 +2,6 @@
 {
     using Cysharp.Threading.Tasks;
     using UnityEngine;
-    using UnityEngine.AddressableAssets;
 
     public class ELAudioManager : MonoSingleton<ELAudioManager>
     {
@@ -11,8 +10,8 @@
         protected override async UniTask OnInit()
         {
             // 初始化UI根节点
-            audioRoot = (await Addressables.InstantiateAsync("AudioRoot", transform).Task).GetComponent<AudioRoot>();
-            clickSoundClip = await Addressables.LoadAssetAsync<AudioClip>("AudioClick").Task;
+            audioRoot = Instantiate(Resources.Load<GameObject>("AudioRoot"),transform).GetComponent<AudioRoot>();
+            clickSoundClip = Resources.Load<AudioClip>("AudioClick");
         }
 
         private AudioClip clickSoundClip;

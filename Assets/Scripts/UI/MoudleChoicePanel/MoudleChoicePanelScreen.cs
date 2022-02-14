@@ -6,8 +6,6 @@ namespace Game.UI
     using UnityEngine;
     using UnityEngine.UI;
     using DG.Tweening;
-    using TMPro;
-    using UnityEngine.AddressableAssets;
     using UnityEngine.EventSystems;
 
     public class MoudleChoicePanelScreenParam : UIOpenScreenParameterBase
@@ -25,8 +23,8 @@ namespace Game.UI
             mCtrl = mCtrlBase as MoudleChoicePanelCtrl;
             mParam = mOpenParam as MoudleChoicePanelScreenParam;
             EffectListener();
+            mCtrl.expBasisContent= Resources.Load<DetailItemContent>("Configs/MultiContent/DetailItemContent_实验基础");
 
-            mCtrl.expBasisContent= await Addressables.LoadAssetAsync<DetailItemContent>("DetailItemContent_实验基础");
             ETTool.Add(mCtrl.btn_ExpBasis, EventTriggerType.PointerClick, (eventData) =>
             {
                 if (mCtrl.expBasisContent!=null)
@@ -43,13 +41,21 @@ namespace Game.UI
             {
                 ELUIManager.Ins.OpenUI<ReportPanelScreen>();
             });
-            mCtrl.moudle1Content= await Addressables.LoadAssetAsync<DetailItemContent>("DetailItemContent_基础病认知");
+            mCtrl.moudle1Content= Resources.Load<DetailItemContent>("Configs/MultiContent/DetailItemContent_基础病认知");
             ETTool.Add(mCtrl.btn_Moudle1, EventTriggerType.PointerClick, (eventData) =>
             {
                 if (mCtrl.moudle1Content!=null)
                     MultiContentTipsPanelScreen.ShowPageWindowContent(mCtrl.moudle1Content.pageContents);
             });
-            ETTool.Add(mCtrl.btn_Moudle2, EventTriggerType.PointerClick, (eventData) => { });
+            ETTool.Add(mCtrl.btn_Moudle2, EventTriggerType.PointerClick, (eventData) =>
+            {
+                ELUIManager.Ins.CloseAllUI();
+                LoadScenePanelScreen.LoadSingleScene(LoadSceneName.Scene_情景模拟模块, () =>
+                {
+                    Debug.Log("加载完成Scene_情景模拟模块");
+                });
+                
+            });
             ETTool.Add(mCtrl.btn_Moudle3, EventTriggerType.PointerClick, (eventData) => { });
             ETTool.Add(mCtrl.btn_Moudle4, EventTriggerType.PointerClick, (eventData) => { });
         }

@@ -8,7 +8,6 @@ namespace Game.UI
     using PathologicalGames;
     using UnityEngine;
     using System;
-    using UnityEngine.AddressableAssets;
     public class ExercisePanelScreenParam : UIOpenScreenParameterBase
     {
         public string exerciseName;
@@ -30,7 +29,7 @@ namespace Game.UI
             base.OnLoadSuccess();
             mCtrl = mCtrlBase as ExercisePanelCtrl;
             mParam = mOpenParam as ExercisePanelScreenParam;
-            currentLabQuestData = await Addressables.LoadAssetAsync<LabQuestData>(mParam.exerciseName);
+            currentLabQuestData =  Resources.Load<LabQuestData>("Configs/Exercise/"+mParam.exerciseName);
             //初始化实验习题
             InitQuestion();
             mCtrl.panel.DOFade(1, 0.5f);

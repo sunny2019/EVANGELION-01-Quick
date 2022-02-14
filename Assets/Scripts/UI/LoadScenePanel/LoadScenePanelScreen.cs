@@ -5,9 +5,6 @@
     using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.SceneManagement;
-    using UnityEngine.AddressableAssets;
-    using UnityEngine.ResourceManagement.AsyncOperations;
-    using UnityEngine.ResourceManagement.ResourceProviders;
 
     public class LoadScenePanelScreenParam : UIOpenScreenParameterBase
     {
@@ -33,12 +30,13 @@
             LoadSceneName sceneName = mParam.mLoadSceneName;
             LoadSceneMode model = mParam.mode;
             //yield return null;
-            AsyncOperationHandle<SceneInstance> async = Addressables.LoadSceneAsync(sceneName.ToString(), model);
-            while (async.Status != AsyncOperationStatus.Succeeded)
+
+            AsyncOperation ao = SceneManager.LoadSceneAsync(sceneName.ToString(), model);
+            while (ao.isDone != true)
             {
                 if (mCtrl.slider_processBar != null)
                 {
-                    mCtrl.slider_processBar.currentPercent = async.PercentComplete * 100;
+                    mCtrl.slider_processBar.currentPercent = ao.progress * 100;
                 }
 
                 await UniTask.WaitForEndOfFrame();

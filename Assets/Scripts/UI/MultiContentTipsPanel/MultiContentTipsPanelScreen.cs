@@ -176,7 +176,10 @@ namespace Game.UI
                 item.buttonObject.transform.UIPoolSpawnedResetXYZ(Vector3.zero);
                 item.buttonObject.GetComponent<DetailWindowButton>().SetName(mParam.pageContents[index].title);
                 item.buttonObject.GetComponent<Button>().onClick.RemoveAllListeners();
-                item.buttonObject.GetComponent<Button>().onClick.AddListener(() => { mCtrl.windowManager_PageWindow.OpenPanel(mParam.pageContents[index].title); });
+                item.buttonObject.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    mCtrl.windowManager_PageWindow.OpenPanel(mParam.pageContents[index].title);
+                });
                 if (mParam.pageContents[i].isSprite)
                 {
                     item.windowObject = PoolManager.Pools["DetailPanelPool"].Spawn(detailSpriteContent).gameObject;

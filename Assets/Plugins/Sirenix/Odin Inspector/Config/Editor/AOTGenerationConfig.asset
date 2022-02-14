@@ -12,9 +12,122 @@ MonoBehaviour:
   m_Script: {fileID: 1726182683, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
   m_Name: AOTGenerationConfig
   m_EditorClassIdentifier: 
-  automateBeforeBuilds: 0
+  automateBeforeBuilds: 1
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 0
-  supportSerializedTypes: []
+  lastScan: 637804483681053383
+  supportSerializedTypes:
+  - TypeName: UnityEngine.AudioSource, UnityEngine.AudioModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: BloodType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Coroutine, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[Game.UI.LabQuestSprite, Assembly-CSharp],[UnityEngine.Sprite,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[OldPeopleType, Assembly-CSharp],[OldPeopleData,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[EVANGELION.SoundType, EVANGELION],[UnityEngine.AudioSource,
+      UnityEngine.AudioModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Michsky.UI.ModernUIPack.ModalWindowManager,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Michsky.UI.ModernUIPack.NotificationManager,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[Game.UI.LabQuestSprite,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[OldPeopleType, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[EVANGELION.SoundType,
+      EVANGELION]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Gender, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: HealthStatus, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: HousePayStatus, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: HouseType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[Game.UI.LabQuestSprite,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[OldPeopleType, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[EVANGELION.SoundType,
+      EVANGELION]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[System.String, mscorlib]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Int32, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Game.UI.LabQuestSprite, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[UnityEngine.Coroutine, UnityEngine.CoreModule]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: LiveStatus, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: LiveType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Michsky.UI.ModernUIPack.ModalWindowManager, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Michsky.UI.ModernUIPack.NotificationManager, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: OldPeopleData, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: OldPeopleType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: PropertyStatus, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: EVANGELION.SoundType, EVANGELION
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.String, mscorlib
+    IsCustom: 0
+    Emit: 1

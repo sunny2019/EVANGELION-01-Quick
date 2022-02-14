@@ -1,6 +1,4 @@
-﻿using DG.Tweening;
-
-namespace Game.UI
+﻿namespace Game.UI
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +7,7 @@ namespace Game.UI
     using UnityEngine;
     using UnityEngine.UI;
     using EVANGELION;
+    using DG.Tweening;
     using Cysharp.Threading.Tasks;
 
     public class ReportPanelScreenParam : UIOpenScreenParameterBase

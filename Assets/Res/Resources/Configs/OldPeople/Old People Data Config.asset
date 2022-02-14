@@ -1,0 +1,469 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2344484e22206a4daeae8c306761d3d, type: 3}
+  m_Name: Old People Data Config
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: OldPeopleDatas
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[OldPeopleType, Assembly-CSharp],[OldPeopleData,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[OldPeopleType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|OldPeopleData, Assembly-CSharp
+    - Name: modelName
+      Entry: 6
+      Data: 
+    - Name: "\u59D3\u540D"
+      Entry: 1
+      Data: "\u5F20\u4E09"
+    - Name: "\u6027\u522B"
+      Entry: 3
+      Data: 0
+    - Name: "\u5E74\u9F84"
+      Entry: 3
+      Data: 25
+    - Name: "\u8EAB\u4EFD\u8BC1\u53F7"
+      Entry: 1
+      Data: 123456789123456789
+    - Name: "\u8001\u4EBA\u8054\u7CFB\u65B9\u5F0F"
+      Entry: 1
+      Data: 12345678910
+    - Name: "\u7D27\u6025\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u7EA6\u5B9A\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u738B\u4E94 12345678912"
+    - Name: "\u5C45\u4F4F\u5730\u5740"
+      Entry: 1
+      Data: "\u4E0A\u6D77\u5E02\u9752\u6D66\u533A\u65B0\u4E39\u8DEF358\u53F74\u5E62101\u5BA4"
+    - Name: "\u5C45\u4F4F\u72B6\u6001"
+      Entry: 3
+      Data: 0
+    - Name: "\u4F4F\u5B85\u79CD\u7C7B"
+      Entry: 3
+      Data: 2
+    - Name: "\u7269\u4E1A\u7BA1\u7406\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u6C34\u7535\u5A92\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u8840\u578B"
+      Entry: 3
+      Data: 0
+    - Name: "\u5065\u5EB7\u72B6\u51B5"
+      Entry: 3
+      Data: 0
+    - Name: "\u65E2\u5F80\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u73B0\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u624B\u672F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u8FC7\u654F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u51FA\u9662\u5C0F\u7ED3"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u95E8\u8BCA\u8BB0\u5F55"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u7528\u836F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u5B9E\u65F6\u751F\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5FC3\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5C45\u5BB6\u60C5\u51B5\u4FE1\u606F"
+      Entry: 3
+      Data: 0
+    - Name: "\u5B9E\u65F6\u5B89\u5168\u60C5\u51B5"
+      Entry: 1
+      Data: "\u5B89\u5168"
+    - Name: "\u5B9E\u65F6\u547C\u53EB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u5BB6\u5C5E\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u90BB\u5C45\u4FE1\u606F"
+      Entry: 1
+      Data: "\u8D75\u516D 12345678913"
+    - Name: "\u5BB6\u5EAD\u533B\u751F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5B59\u4E03 12345678913"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 3|OldPeopleData, Assembly-CSharp
+    - Name: modelName
+      Entry: 6
+      Data: 
+    - Name: "\u59D3\u540D"
+      Entry: 1
+      Data: "\u5F20\u4E09"
+    - Name: "\u6027\u522B"
+      Entry: 3
+      Data: 1
+    - Name: "\u5E74\u9F84"
+      Entry: 3
+      Data: 25
+    - Name: "\u8EAB\u4EFD\u8BC1\u53F7"
+      Entry: 1
+      Data: 123456789123456789
+    - Name: "\u8001\u4EBA\u8054\u7CFB\u65B9\u5F0F"
+      Entry: 1
+      Data: 12345678910
+    - Name: "\u7D27\u6025\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u7EA6\u5B9A\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u738B\u4E94 12345678912"
+    - Name: "\u5C45\u4F4F\u5730\u5740"
+      Entry: 1
+      Data: "\u4E0A\u6D77\u5E02\u9752\u6D66\u533A\u65B0\u4E39\u8DEF358\u53F74\u5E62101\u5BA4"
+    - Name: "\u5C45\u4F4F\u72B6\u6001"
+      Entry: 3
+      Data: 0
+    - Name: "\u4F4F\u5B85\u79CD\u7C7B"
+      Entry: 3
+      Data: 2
+    - Name: "\u7269\u4E1A\u7BA1\u7406\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u6C34\u7535\u5A92\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u8840\u578B"
+      Entry: 3
+      Data: 0
+    - Name: "\u5065\u5EB7\u72B6\u51B5"
+      Entry: 3
+      Data: 0
+    - Name: "\u65E2\u5F80\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u73B0\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u624B\u672F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u8FC7\u654F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u51FA\u9662\u5C0F\u7ED3"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u95E8\u8BCA\u8BB0\u5F55"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u7528\u836F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u5B9E\u65F6\u751F\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5FC3\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5C45\u5BB6\u60C5\u51B5\u4FE1\u606F"
+      Entry: 3
+      Data: 0
+    - Name: "\u5B9E\u65F6\u5B89\u5168\u60C5\u51B5"
+      Entry: 1
+      Data: "\u5B89\u5168"
+    - Name: "\u5B9E\u65F6\u547C\u53EB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u5BB6\u5C5E\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u90BB\u5C45\u4FE1\u606F"
+      Entry: 1
+      Data: "\u8D75\u516D 12345678913"
+    - Name: "\u5BB6\u5EAD\u533B\u751F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5B59\u4E03 12345678913"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 4|OldPeopleData, Assembly-CSharp
+    - Name: modelName
+      Entry: 6
+      Data: 
+    - Name: "\u59D3\u540D"
+      Entry: 1
+      Data: "\u5F20\u4E09"
+    - Name: "\u6027\u522B"
+      Entry: 3
+      Data: 0
+    - Name: "\u5E74\u9F84"
+      Entry: 3
+      Data: 25
+    - Name: "\u8EAB\u4EFD\u8BC1\u53F7"
+      Entry: 1
+      Data: 123456789123456789
+    - Name: "\u8001\u4EBA\u8054\u7CFB\u65B9\u5F0F"
+      Entry: 1
+      Data: 12345678910
+    - Name: "\u7D27\u6025\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u7EA6\u5B9A\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u738B\u4E94 12345678912"
+    - Name: "\u5C45\u4F4F\u5730\u5740"
+      Entry: 1
+      Data: "\u4E0A\u6D77\u5E02\u9752\u6D66\u533A\u65B0\u4E39\u8DEF358\u53F74\u5E62101\u5BA4"
+    - Name: "\u5C45\u4F4F\u72B6\u6001"
+      Entry: 3
+      Data: 0
+    - Name: "\u4F4F\u5B85\u79CD\u7C7B"
+      Entry: 3
+      Data: 2
+    - Name: "\u7269\u4E1A\u7BA1\u7406\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u6C34\u7535\u5A92\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u8840\u578B"
+      Entry: 3
+      Data: 0
+    - Name: "\u5065\u5EB7\u72B6\u51B5"
+      Entry: 3
+      Data: 0
+    - Name: "\u65E2\u5F80\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u73B0\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u624B\u672F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u8FC7\u654F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u51FA\u9662\u5C0F\u7ED3"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u95E8\u8BCA\u8BB0\u5F55"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u7528\u836F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u5B9E\u65F6\u751F\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5FC3\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5C45\u5BB6\u60C5\u51B5\u4FE1\u606F"
+      Entry: 3
+      Data: 0
+    - Name: "\u5B9E\u65F6\u5B89\u5168\u60C5\u51B5"
+      Entry: 1
+      Data: "\u5B89\u5168"
+    - Name: "\u5B9E\u65F6\u547C\u53EB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u5BB6\u5C5E\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u90BB\u5C45\u4FE1\u606F"
+      Entry: 1
+      Data: "\u8D75\u516D 12345678913"
+    - Name: "\u5BB6\u5EAD\u533B\u751F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5B59\u4E03 12345678913"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 5|OldPeopleData, Assembly-CSharp
+    - Name: modelName
+      Entry: 6
+      Data: 
+    - Name: "\u59D3\u540D"
+      Entry: 1
+      Data: "\u5F20\u4E09"
+    - Name: "\u6027\u522B"
+      Entry: 3
+      Data: 1
+    - Name: "\u5E74\u9F84"
+      Entry: 3
+      Data: 25
+    - Name: "\u8EAB\u4EFD\u8BC1\u53F7"
+      Entry: 1
+      Data: 123456789123456789
+    - Name: "\u8001\u4EBA\u8054\u7CFB\u65B9\u5F0F"
+      Entry: 1
+      Data: 12345678910
+    - Name: "\u7D27\u6025\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u7EA6\u5B9A\u8054\u7EDC\u4EBA\u8054\u7CFB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u738B\u4E94 12345678912"
+    - Name: "\u5C45\u4F4F\u5730\u5740"
+      Entry: 1
+      Data: "\u4E0A\u6D77\u5E02\u9752\u6D66\u533A\u65B0\u4E39\u8DEF358\u53F74\u5E62101\u5BA4"
+    - Name: "\u5C45\u4F4F\u72B6\u6001"
+      Entry: 3
+      Data: 0
+    - Name: "\u4F4F\u5B85\u79CD\u7C7B"
+      Entry: 3
+      Data: 2
+    - Name: "\u7269\u4E1A\u7BA1\u7406\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u6C34\u7535\u5A92\u60C5\u51B5"
+      Entry: 3
+      Data: 1
+    - Name: "\u8840\u578B"
+      Entry: 3
+      Data: 0
+    - Name: "\u5065\u5EB7\u72B6\u51B5"
+      Entry: 3
+      Data: 0
+    - Name: "\u65E2\u5F80\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u73B0\u75C5\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u624B\u672F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u8FC7\u654F\u53F2"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u51FA\u9662\u5C0F\u7ED3"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u95E8\u8BCA\u8BB0\u5F55"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u7528\u836F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u65E0"
+    - Name: "\u5B9E\u65F6\u751F\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5FC3\u7406\u5065\u5EB7\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5065\u5EB7"
+    - Name: "\u5B9E\u65F6\u5C45\u5BB6\u60C5\u51B5\u4FE1\u606F"
+      Entry: 3
+      Data: 0
+    - Name: "\u5B9E\u65F6\u5B89\u5168\u60C5\u51B5"
+      Entry: 1
+      Data: "\u5B89\u5168"
+    - Name: "\u5B9E\u65F6\u547C\u53EB\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u5BB6\u5C5E\u4FE1\u606F"
+      Entry: 1
+      Data: "\u674E\u56DB 12345678911"
+    - Name: "\u90BB\u5C45\u4FE1\u606F"
+      Entry: 1
+      Data: "\u8D75\u516D 12345678913"
+    - Name: "\u5BB6\u5EAD\u533B\u751F\u4FE1\u606F"
+      Entry: 1
+      Data: "\u5B59\u4E03 12345678913"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

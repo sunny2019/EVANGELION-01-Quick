@@ -3,7 +3,6 @@
 namespace EVANGELION
 {
     using UnityEngine;
-    using UnityEngine.AddressableAssets;
 
     public class ScreenBase
     {
@@ -27,7 +26,10 @@ namespace EVANGELION
         {
             
             mOpenParam = param;
-            var ctrl = (await Addressables.InstantiateAsync(mResName,ELUIManager.Ins.GetUIRootTransform()).Task).gameObject;
+            
+            var ctrl = Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/"+mResName),ELUIManager.Ins.GetUIRootTransform());
+
+            
             await PanelLoadComplete(ctrl);
         }
 
@@ -91,7 +93,7 @@ namespace EVANGELION
 
         public virtual void Dispose()
         {
-            Addressables.ReleaseInstance(mPanelRoot);
+            Object.Destroy(mPanelRoot);
         }
     }
 }

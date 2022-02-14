@@ -7,7 +7,6 @@ namespace EVANGELION
     using Cysharp.Threading.Tasks;
     using Sirenix.OdinInspector;
     using UnityEngine;
-    using UnityEngine.AddressableAssets;
     using UnityEngine.Rendering.Universal;
     using UnityEngine.SceneManagement;
 
@@ -49,8 +48,8 @@ namespace EVANGELION
         protected override async UniTask OnInit()
         {
             // 初始化UI根节点
-            uiRoot = (await Addressables.InstantiateAsync("UIRoot", transform).Task).gameObject;
-            
+            uiRoot = Instantiate(Resources.Load<GameObject>("UIRoot"),transform);
+
             uiRoot.transform.position=Vector3.zero;
 
             uiCamera = uiRoot.GetComponentInChildren<Camera>();
