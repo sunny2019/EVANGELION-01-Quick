@@ -109,7 +109,7 @@ namespace Game.UI
         protected void ReportCommit()
         {
             if (Conclusion.Length < 200)
-                ModalWindowPanelScreen.OpenModalWindowNoTabs("实验报告提示", "实验报告提交后将不可切换主菜单，也不可以进行任何操作，是否确认提交？", true, () => { ReportCommitting(); });
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("实验报告提示", "实验报告提交后不可以进行任何操作，是否确认提交？", true, () => { ReportCommitting(); });
             else
             {
                 NotificationsPanelScreen.ShowNotifications("实验报告提示", "心得体会不可超过200字！");
