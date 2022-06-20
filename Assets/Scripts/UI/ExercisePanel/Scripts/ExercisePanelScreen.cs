@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using Michsky.UI.ModernUIPack;
+using TMPro;
 
 namespace Game.UI
 {
@@ -8,10 +10,22 @@ namespace Game.UI
     using PathologicalGames;
     using UnityEngine;
     using System;
+
     public class ExercisePanelScreenParam : UIOpenScreenParameterBase
     {
         public string exerciseName;
-        public Action<string, int> commitCallBack;
+        public Action<string,int, int> commitCallBack;
+        public bool cacheResult = true;
+        public bool canRefresh = true;
+        public bool canClose = true;
+        /// <summary>
+        /// 严格模式下，必须全部答对所有答案，才会提交
+        /// </summary>
+        public bool strictMode = false; 
+        public Action closeCallBack;
+        public bool showIndex = true;
+        public string panelTitle = "";
+        public string commitBtnTxt = "提交实验习题";
     }
 
     public class ExercisePanelScreen : ScreenBase
@@ -29,18 +43,27 @@ namespace Game.UI
             base.OnLoadSuccess();
             mCtrl = mCtrlBase as ExercisePanelCtrl;
             mParam = mOpenParam as ExercisePanelScreenParam;
-            currentLabQuestData =  Resources.Load<LabQuestData>("Configs/Exercise/"+mParam.exerciseName);
+            currentLabQuestData = Resources.Load<LabQuestData>("Configs/Exercise/" + mParam.exerciseName);
             //初始化实验习题
             InitQuestion();
             mCtrl.panel.DOFade(1, 0.5f);
         }
 
-        public static async UniTask ShowExercise(string exerciseName, Action<string, int> commitCallBack)
+        public static async UniTask ShowExercise(string exerciseName, Action<string, int,int> commitCallBack, bool cacheResult = true, bool canRefresh = true, bool canClose = true,
+            bool strictMode = false,Action closeCallBack=null,bool showIndex=true,string panelTitle = "",string commitBtnTxt="")
         {
             await ELUIManager.Ins.OpenUI<ExercisePanelScreen>(new ExercisePanelScreenParam()
             {
                 exerciseName = exerciseName,
                 commitCallBack = commitCallBack,
+                cacheResult = cacheResult,
+                canRefresh = canRefresh,
+                canClose = canClose,
+                strictMode=strictMode,
+                closeCallBack=closeCallBack,
+                showIndex = showIndex,
+                panelTitle = panelTitle,
+                commitBtnTxt = commitBtnTxt,
             });
         }
 
@@ -51,22 +74,32 @@ namespace Game.UI
 
         private void InitQuestion()
         {
-            if (!LabQuestIsCommit.ContainsKey(mParam.exerciseName))
+            if (!string.IsNullOrEmpty(mParam.panelTitle))
+            {
+                mCtrl.go_Title.SetActive(true);
+                mCtrl.go_Title.GetComponent<TMP_Text>().text = mParam.panelTitle;
+            }
+            if (mParam.cacheResult && !LabQuestIsCommit.ContainsKey(mParam.exerciseName))
                 LabQuestIsCommit.Add(mParam.exerciseName, false);
-            if (!UserChoice.ContainsKey(mParam.exerciseName))
+            if (mParam.cacheResult && !UserChoice.ContainsKey(mParam.exerciseName))
                 UserChoice.Add(mParam.exerciseName, new List<List<ChoiceIndexStr>>());
             InitLabQuest();
             InitLabQuestCommit();
+            mCtrl.btn_LabQuestRefresh.gameObject.SetActive(mParam.canRefresh);
             mCtrl.btn_LabQuestRefresh.onClick.AddListener(LabQuestRefresh);
+            mCtrl.btn_LabQuestClose.gameObject.SetActive(mParam.canClose);
             mCtrl.btn_LabQuestClose.onClick.AddListener(CloseExersise);
         }
 
         private void CloseExersise()
         {
-            if (LabQuestIsCommit[mParam.exerciseName])
+            if (!mParam.cacheResult || LabQuestIsCommit[mParam.exerciseName])
+            {
                 ELUIManager.Ins.CloseUI<ExercisePanelScreen>();
+                mParam.closeCallBack?.Invoke();
+            }
             else
-                ModalWindowPanelScreen.OpenModalWindowNoTabs("系统提示", "知识考核结果未提交前退出不会保存已选择结果哦~", true, () => { ELUIManager.Ins.CloseUI<ExercisePanelScreen>(); });
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("系统提示", "未提交前退出不会保存已选择结果哦~", true, () => { ELUIManager.Ins.CloseUI<ExercisePanelScreen>(); });
         }
 
         public List<LabQuestDataItem> labQuestDataItems = new List<LabQuestDataItem>();
@@ -85,7 +118,7 @@ namespace Game.UI
             for (int i = 0; i < quests.Count; i++)
             {
                 labQuestDataItems.Add(spawnPool.Spawn(labQuestItem, mCtrl.trans_LabQuestParent).UIPoolSpawnedResetY()
-                    .GetComponent<LabQuestDataItem>().Init(quests[i], i + 1));
+                    .GetComponent<LabQuestDataItem>().Init(quests[i], i + 1,mParam.showIndex));
             }
         }
 
@@ -94,7 +127,12 @@ namespace Game.UI
         /// </summary>
         protected void InitLabQuestCommit()
         {
-            if (LabQuestIsCommit[mParam.exerciseName])
+            if (!string.IsNullOrEmpty(mParam.commitBtnTxt))
+            {
+                mCtrl.btn_LabQuestCommit.GetComponent<ButtonManager>().buttonText = mParam.commitBtnTxt;
+                mCtrl.btn_LabQuestCommit.GetComponent<ButtonManager>().UpdateUI();
+            }
+            if (LabQuestIsCommit.ContainsKey(mParam.exerciseName) && LabQuestIsCommit[mParam.exerciseName])
             {
                 ReloadLabQuestChoice();
                 mCtrl.btn_LabQuestCommit.interactable = false;
@@ -138,13 +176,18 @@ namespace Game.UI
 
         protected void VerificationLabQuest()
         {
-            if (!CheckUserIsChoice())
+            if (CheckUserIsChoice())
             {
-                ModalWindowPanelScreen.OpenModalWindowNoTabs("试题提示", "存在试题未完成，是否确认提交试题？", true, CommitLabQuest);
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("提示", "已作答完，是否确认？", true, CommitLabQuest,true);
             }
-            else
+            else if (!CheckUserIsChoice()&&mParam.strictMode)
             {
-                CommitLabQuest();
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("提示", "作答未完成，请先完成作答。", true,null ,false);
+
+            }
+            else if (!CheckUserIsChoice()&&!mParam.strictMode)
+            {
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("提示", "作答未完成，是否确认？", true, CommitLabQuest,true);
             }
         }
 
@@ -154,29 +197,61 @@ namespace Game.UI
         protected void CommitLabQuest()
         {
             int rightNum = 0;
+            List<List<ChoiceIndexStr>> userChoices = new List<List<ChoiceIndexStr>>();
             for (int i = 0; i < labQuestDataItems.Count; i++)
             {
-                if (labQuestDataItems[i].Sumbit())
+                if (labQuestDataItems[i].Sumbit(true))
                 {
                     rightNum++;
                 }
 
-                UserChoice[mParam.exerciseName].Add(labQuestDataItems[i].SaveLabQuestChoice());
+                userChoices.Add(labQuestDataItems[i].SaveLabQuestChoice());
+            }
+
+
+            if (mParam.strictMode)
+            {
+                if (rightNum != currentLabQuestData.questions.Count)
+                {
+                    NotificationsPanelScreen.ShowNotifications("提示", "当前习题需全答对才可提交,回答存在错误，请重新作答。");
+                    return;
+                }
+            }
+
+            for (int i = 0; i < labQuestDataItems.Count; i++)
+            {
+                labQuestDataItems[i].Sumbit();
             }
 
             mCtrl.btn_LabQuestCommit.onClick.RemoveAllListeners();
             mCtrl.btn_LabQuestCommit.interactable = false;
 
-            LabQuestIsCommit[mParam.exerciseName] = true;
+            if (mParam.cacheResult)
+            {
+                UserChoice[mParam.exerciseName].AddRange(userChoices);
+                LabQuestIsCommit[mParam.exerciseName] = true;
+            }
 
-            mParam.commitCallBack?.Invoke(mParam.exerciseName, rightNum);
+            mParam.commitCallBack?.Invoke(mParam.exerciseName,currentLabQuestData.questions.Count, rightNum);
+
+            //如果没有关闭按钮，提交后应打开关闭按钮
+            if (!mParam.canClose)
+            {
+                mCtrl.btn_LabQuestClose.gameObject.SetActive(true);
+                mCtrl.go_CloseTip.SetActive(true);
+            }
         }
 
         protected void LabQuestRefresh()
         {
-            ModalWindowPanelScreen.OpenModalWindowNoTabs("试题提示",
-                LabQuestIsCommit[mParam.exerciseName] ? "重置后所有习题将被重置并且习题模块已得分将清零，继续重置么？" : "重置后当前所有已选择选项将被重置，继续重置么？", true,
-                ResetAllLabQuest);
+            if (mParam.cacheResult)
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("提示",
+                    LabQuestIsCommit[mParam.exerciseName] ? "重置后当前所选项将被重置并且已得分将清零，继续重置么？" : "重置后当前所选项将被重置，继续重置么？", true,
+                    ResetAllLabQuest);
+            else
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("提示",
+                    "重置后当前所选项将被重置，继续重置么？", true,
+                    ResetAllLabQuest);
         }
 
         protected void ResetAllLabQuest()

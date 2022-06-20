@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Readme
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: c1ef65090bcc027459e230956dc83206, type: 3}
-  title: "\u667A\u6167\u517B\u8001"
+  title: "\u5FEB\u901F\u542F\u52A8\u6A21\u677F"
   sections:
   - heading: 
-    text: "\u5168\u540D\uFF1A\u667A\u6167\u5C45\u5BB6\u517B\u8001\u6570\u636E\u5206\u6790\u4E0E\u9884\u8B66\u865A\u62DF\u4EFF\u771F\u5B9E\u9A8C"
+    text: EVANGELION-01-Quick
     linkText: 
     url: 
   - heading: 
-    text: "\u6240\u5C5E\uFF1A\u6811\u4EBA\u5B66\u9662"
+    text: "\u6240\u5C5E\uFF1ASimtop"
     linkText: 
     url: 
   - heading: 
@@ -28,11 +28,11 @@ MonoBehaviour:
     linkText: 
     url: 
   - heading: 
-    text: "Unity\u7248\u672C\uFF1A2021.2.7f1c1 "
+    text: "Unity\u7248\u672C\uFF1A2019.4.37f1c1"
     linkText: 
     url: 
   - heading: 
     text: 
     linkText: "\u4ED3\u5E93\u5730\u5740"
-    url: https://github.com/SimtopDev/SR_ZHJJ
+    url: https://github.com/sunny2019/EVANGELION-01-Quick
   loadedLayout: 1

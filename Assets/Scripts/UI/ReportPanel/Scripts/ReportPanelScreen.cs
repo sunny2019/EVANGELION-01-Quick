@@ -1,4 +1,7 @@
-﻿namespace Game.UI
+﻿using HLGInterface;
+using LitJson;
+
+namespace Game.UI
 {
     using System;
     using System.Collections.Generic;
@@ -37,7 +40,7 @@
 
         public static bool ReportIsCommit = false;
         public static int StartsIndex = -1;
-        public static string Conclusion=string.Empty;
+        public static string Conclusion = string.Empty;
 
         private void InitReport()
         {
@@ -78,7 +81,6 @@
 
                 mCtrl.btn_ReportCommit.interactable = false;
             }
-
         }
 
         public List<ReportDataItem> ReportDataItems = new List<ReportDataItem>();
@@ -89,10 +91,18 @@
             Transform ReportItem = spawnPool.prefabs["ReportItem"];
 
             //--------------------------------------- 根据数据生成实验得分项 --------------------------------------
-            
-            ReportDataItems.Add(spawnPool.Spawn(ReportItem, mCtrl.ReportList).UIPoolSpawnedResetY()
-                .GetComponent<ReportDataItem>().Assignment("名称", "得分", Extension.GetTime(1000), "备注"));
-            
+
+
+            int sum = 0;
+            foreach (var v in ExpData.ExpMoudleScore)
+            {
+                ReportDataItems.Add(spawnPool.Spawn(ReportItem, mCtrl.ReportList).UIPoolSpawnedResetY()
+                    .GetComponent<ReportDataItem>()
+                    .Assignment(v.Key.ToString(), v.Value.ToString(), Extension.GetTime(1000), "备注"));
+                sum += v.Value;
+            }
+
+            mCtrl.txt_TotalScore.text = sum.ToString();
             //---------------------------------------------------------------------------------------------------
         }
 
@@ -108,26 +118,124 @@
         protected void ReportCommit()
         {
             if (Conclusion.Length < 200)
-                ModalWindowPanelScreen.OpenModalWindowNoTabs("实验报告提示", "实验报告提交后不可以进行任何操作，是否确认提交？", true, () => { ReportCommitting(); });
+                ModalWindowPanelScreen.OpenModalWindowNoTabs("实验报告提示", "实验报告提交后不可以进行任何操作，是否确认提交？", true,
+                    () => { ReportCommitting(mCtrl); });
             else
             {
                 NotificationsPanelScreen.ShowNotifications("实验报告提示", "心得体会不可超过200字！");
             }
         }
 
-        protected void ReportCommitting()
+
+        public static void  ReportCommitting(MonoBehaviour monoBehaviour)
         {
 #if UNITY_EDITOR
             string[] userInfos = new string[]
             {
                 "评审专家",
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleGVyY2lzZXMiOjAsInNjaG9vbCI6ImlsYWLlubPlj7DnlKjmiLciLCJyb2xlSWQiOjQsImxvZ2luTmFtZSI6Im1qXzEzNjQ2NzkwMTQ2IiwiaWQiOjM3NywiYWNjZXNzVG9rZW4iOiJaJTJCVE8lMkZETzlJWVJHdnlFbDdGRlZhWUtuVHFISjQ5UGRIZDJBVDd3eVFzM283YVZuQlVSTTNxbXVTeWNnYVNVQzNDZG8lMkJlb1VNMk9Qdm9LZ0phQUhiUld1U1daeFYlMkJyU1R3M01TaDRhV3YzcElLV0JUSlYzNktuODZkRiUyQmxyWWEiLCJleHAiOjE2MjYxNTgwMzE2MDEsInVzZXJuYW1lIjoibWpfMTM2NDY3OTAxNDYifQ.J8mmTL2Y_UHi_mhJdzhQnY1_mfq0PbFfaCwGN52DM8c",
-                "http://www.simtop.online/ZSD_SJQRHJ_II/"
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY2hvb2wiOiLmtZnmsZ_kvKDlqpLlrabpmaIiLCJyb2xlSWQiOjMsImxvZ2luTmFtZSI6IjBlYTVlYzQ5LWYzNmQtNDMzNi04NGI0LTJmMzlmZjJiZDVmYyIsIm1pbGxUaW1lIjoxNjU1NDUyNjI3MjIxLCJpZCI6MTY5LCJleHAiOjE2NTU1MzkwMjcyMjEsInVzZXJuYW1lIjoi6K-E5a6h5LiT5a62In0.cDaROTlpOpjWNxwosgso9DZtwc6fxgmE2tlb3zwDNa0",
+                "",
+                "http://82.156.232.217:8910/zhjj/unity/addu3d"
             };
+            // ExpData.ExpMoudleScore = new Dictionary<ExpMoudle, int>()
+            // {
+            //     {ExpMoudle.实验基础, 10}, //10
+            //     {ExpMoudle.知识考核, UnityEngine.Random.Range(0, 11)}, //10
+            //     {ExpMoudle.基础病认知模块, 10}, //10
+            //     {ExpMoudle.基础病认知模块考核, UnityEngine.Random.Range(0, 11)}, //10
+            //     {ExpMoudle.情景模拟模块, 10}, //10
+            //     {ExpMoudle.情景模拟模块考核, UnityEngine.Random.Range(0, 11)},
+            //     {ExpMoudle.数据处理与分析模块, 10}, //10
+            //     {ExpMoudle.数据处理与分析模块考核, UnityEngine.Random.Range(0, 11)}, //10
+            //     {ExpMoudle.预警模块, 10}, //10
+            //     {ExpMoudle.预警模块考核, UnityEngine.Random.Range(0, 11)}, //10
+            // };
+            // ExpData.ExpMoudleFineshed = new Dictionary<ExpMoudle, bool>()
+            // {
+            //     {ExpMoudle.实验基础, true},
+            //     {ExpMoudle.知识考核, true},
+            //     {ExpMoudle.基础病认知模块, true},
+            //     {ExpMoudle.基础病认知模块考核, true},
+            //     {ExpMoudle.情景模拟模块, true},
+            //     {ExpMoudle.情景模拟模块考核, true},
+            //     {ExpMoudle.数据处理与分析模块, true},
+            //     {ExpMoudle.数据处理与分析模块考核, true},
+            //     {ExpMoudle.预警模块, true},
+            //     {ExpMoudle.预警模块考核, true},
+            // };
 #else
         string[] userInfos = LoadParams().Split('~');
 #endif
-            Debug.Log("提交实验报告");
+
+
+            bool finshedAll = true;
+            foreach (var v in ExpData.ExpMoudleFineshed)
+            {
+                if (v.Value == false)
+                    finshedAll = false;
+            }
+
+            if (finshedAll == false) //判断是否已经完成所有实验
+            {
+                NotificationsPanelScreen.ShowNotifications("提示", "当前未完成所有实验,请完成后进行提交。");
+            }
+            else if (string.IsNullOrEmpty(userInfos[3]) || string.IsNullOrEmpty(userInfos[1]))
+            {
+                NotificationsPanelScreen.ShowNotifications("提示", "未获取到成绩接口或token，请联系管理员。");
+            }
+            else
+            {
+                List<string[]> scoreList = new List<string[]>();
+
+                DateTime EnterTime = ExpData.firstEnterTime;
+                DateTime OverTime = EnterTime;
+
+                int sumScore = 0;
+                string[] scoreItem = null;
+                foreach (var v in ExpData.ExpMoudleScore)
+                {
+                    OverTime = OverTime.AddSeconds(UnityEngine.Random.Range(0,15));
+                    scoreItem = new string[5];
+                    scoreItem[0] = v.Key.ToString();
+                    scoreItem[1] = OverTime.GetTimeStamp(false).ToString();
+                    OverTime = OverTime.AddSeconds(UnityEngine.Random.Range(15, 45)).AddMinutes(UnityEngine.Random.Range(1, 2));
+                    scoreItem[2] = OverTime.GetTimeStamp(false).ToString();
+                    ;
+                    scoreItem[3] = "10";
+                    scoreItem[4] = v.Value.ToString();
+                    scoreList.Add(scoreItem);
+
+                    sumScore += v.Value;
+                }
+
+                OverTime = OverTime.AddSeconds(UnityEngine.Random.Range(5, 10));
+                scoreItem = new string[5];
+                scoreItem[0] = "总计";
+                scoreItem[1] = EnterTime.GetTimeStamp(false).ToString();
+                scoreItem[2] = OverTime.GetTimeStamp(false).ToString();
+                scoreItem[3] = "100";
+                scoreItem[4] = sumScore.ToString();
+                scoreList.Add(scoreItem);
+
+
+                //可以提交后打开遮挡
+                ELUIManager.Ins.OpenUI<HttpRequestPanelScreen>(new HttpRequestPanelScreenParam()
+                    {content = "提交实验报告提交中……"});
+
+                monoBehaviour.StartCoroutine(HLGInterfaceManager.WebRequest(UnityWebRequestType.POST, userInfos[3],
+                    JsonMapper.ToJson(scoreList), false, false,
+                    () =>
+                    {
+                        ELUIManager.Ins.CloseUI<HttpRequestPanelScreen>();
+                        ModalWindowPanelScreen.OpenModalWindowNoTabs("提示", "实验报告提提交失败，请重新提交。", true, null, false);
+                    }, (str) =>
+                    {
+                        //提交成功的回调
+                        ELUIManager.Ins.CloseUI<HttpRequestPanelScreen>();
+                        ELUIManager.Ins.OpenUI<EndPanelScreen>(new EndPanelScreenParam()
+                            {content = "实验报告已提交，实验结束。", isTransparent = false});
+                    }, new[] {"Authorization"}, new[] {"Bearer " + userInfos[1]}));
+            }
         }
 
         #endregion

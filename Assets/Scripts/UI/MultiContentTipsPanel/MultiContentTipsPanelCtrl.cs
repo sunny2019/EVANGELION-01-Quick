@@ -1,4 +1,6 @@
-﻿namespace Game.UI
+﻿using System;
+
+namespace Game.UI
 {
     using System.Collections;
     using EVANGELION;
@@ -32,9 +34,22 @@
         public Transform trans_PageWindowButtons;
         public Transform trans_PageWindowWindows;
         public WindowManager windowManager_PageWindow;
+        public ButtonManagerBasicWithIcon btn_PageWindowClose;
+        
+        
+        public GameObject go_FullScreenSpriteContent;
+        public Image ig_FullScreenSpriteContent;
+        public ButtonManagerBasic btn_CloseFullScreenSpriteContent;
+        public GameObject go_OpenUrl;
 
 
-        public IEnumerator Close(MultiContentTipsType isSpriteContent)
+        public GameObject go_StringTableList;
+        public TMP_Text txt_StringTableListTitle;
+        public Transform trans_StringTableItems;
+        public GameObject go_StringTableConfirmBtnGroup;
+        public ButtonManager btn_StringTableConfirmBtn;
+
+        public IEnumerator Close(MultiContentTipsType isSpriteContent,Action closeCallBack=null)
         {
             GameObject currentClose = null;
             if (isSpriteContent == MultiContentTipsType.SpriteContent)
@@ -58,16 +73,24 @@
             {
                 currentClose = go_PageWindow;
             }
+            else if (isSpriteContent == MultiContentTipsType.FullScreenSpriteContent)
+            {
+                currentClose = go_FullScreenSpriteContent;
+            }else if (isSpriteContent==MultiContentTipsType.StringTableList)
+            {
+                currentClose = go_StringTableList;
+            }
 
             currentClose.GetComponent<Animator>().Play("HideContent");
             float closeAnimationTime = currentClose.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
             yield return new WaitForSeconds(closeAnimationTime);
+            closeCallBack?.Invoke();
             ELUIManager.Ins.CloseUI<MultiContentTipsPanelScreen>();
         }
 
         public void CloseVideoContent(VideoPlayer source)
         {
-            StartCoroutine(Close(MultiContentTipsType.VideoContent));
+            StartCoroutine(Close(MultiContentTipsType.VideoContent,ELUIManager.Ins.GetUI<MultiContentTipsPanelScreen>().mParam.closeCallBack));
         }
     }
 }

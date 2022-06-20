@@ -1,4 +1,10 @@
-﻿namespace EVANGELION
+﻿using System;
+using System.Collections;
+using System.Runtime.InteropServices;
+using Cinemachine;
+using UnityEngine.SceneManagement;
+
+namespace EVANGELION
 {
     using System.Collections.Generic;
     using DG.Tweening;
@@ -7,6 +13,18 @@
 
     public static class Extension
     {
+        static Extension()
+        {
+            SceneManager.sceneLoaded += ((arg0, mode) =>
+            {
+                #region CinemachineVirtualCamera
+
+                cv_Index = 11;
+
+                #endregion
+            });
+        }
+
         # region List
 
         /// <summary>
@@ -49,9 +67,11 @@
 
         #region HighlightEffect
 
-        public static HighlightEffect HighlightEffectOverlayColorHDR(this HighlightEffect highlightEffect, float multiple)
+        public static HighlightEffect HighlightEffectOverlayColorHDR(this HighlightEffect highlightEffect,
+            float multiple)
         {
-            highlightEffect.overlayColor = new Color(highlightEffect.overlayColor.r * multiple, highlightEffect.overlayColor.g * multiple, highlightEffect.overlayColor.b * multiple);
+            highlightEffect.overlayColor = new Color(highlightEffect.overlayColor.r * multiple,
+                highlightEffect.overlayColor.g * multiple, highlightEffect.overlayColor.b * multiple);
             return highlightEffect;
         }
 
@@ -85,6 +105,32 @@
             return h.ToString("00") + ":" + m.ToString("00") + ":" + s.ToString("00");
         }
 
+        public static string GetTimeToDay(float time)
+        {
+            float d = Mathf.FloorToInt(time / 86400f);
+            float h = Mathf.FloorToInt(time / 3600f - d * 86400f);
+            float m = Mathf.FloorToInt(time / 60f - h * 60f - d * 86400f);
+            float s = Mathf.FloorToInt(time - m * 60f - h * 3600f - d * 86400f);
+            return d.ToString("00") + ":" + h.ToString("00") + ":" + m.ToString("00") + ":" + s.ToString("00");
+        }
+
+        /// <summary>  
+        /// 获取当前时间戳  
+        /// </summary>  
+        /// <param name="bflag">为真时获取10位时间戳,为假时获取13位时间戳.bool bflag = true</param>  
+        /// <returns></returns>  
+        public static long GetTimeStamp(this DateTime dateTime, bool bflag)
+        {
+            TimeSpan ts =dateTime - TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1, 0, 0, 0, 0));
+            long temp;
+            if (bflag)
+                temp = Convert.ToInt64(ts.TotalSeconds);
+            else
+                temp = Convert.ToInt64(ts.TotalMilliseconds);
+
+            return temp;
+        }
+        
         #endregion
 
         #region Transform
@@ -99,6 +145,19 @@
             Vector3 v3 = trans.GetComponent<RectTransform>().localPosition;
             v3.z = 0;
             trans.GetComponent<RectTransform>().localPosition = v3;
+            return trans;
+        }
+
+
+        public static Transform UIPoolSpawnedSetFirst(this Transform trans)
+        {
+            trans.SetAsFirstSibling();
+            return trans;
+        }
+
+        public static Transform UIPoolSpawnedSetLast(this Transform trans)
+        {
+            trans.SetAsLastSibling();
             return trans;
         }
 
@@ -220,7 +279,8 @@
 
         #region MeshRenderer
 
-        private static Dictionary<MeshRenderer, Material[]> OriginMaterials = new Dictionary<MeshRenderer, Material[]>();
+        private static Dictionary<MeshRenderer, Material[]>
+            OriginMaterials = new Dictionary<MeshRenderer, Material[]>();
 
         private static Material[] SaveMaterial(this MeshRenderer meshRenderer)
         {
@@ -230,9 +290,11 @@
                 return OriginMaterials[meshRenderer] = meshRenderer.sharedMaterials;
         }
 
-        public static void SetAlpha(this MeshRenderer meshRenderer, float alpha = 0.5f, float duration = 0.5f, bool needProperties = false)
+        public static void SetAlpha(this MeshRenderer meshRenderer, float alpha = 0.5f, float duration = 0.5f,
+            bool needProperties = false)
         {
-            Material[] tempMats = meshRenderer.materials = SaveMaterial(meshRenderer).TransparentToOpaque(needProperties);
+            Material[] tempMats =
+                meshRenderer.materials = SaveMaterial(meshRenderer).TransparentToOpaque(needProperties);
             for (int i = 0; i < tempMats.Length; i++)
             {
                 Color cr = tempMats[i].color;
@@ -243,6 +305,25 @@
         public static void ResetMaterials(this MeshRenderer meshRenderer)
         {
             meshRenderer.materials = OriginMaterials[meshRenderer];
+        }
+
+        public static void SetAlphas(this GameObject go, float alpha = 0.5f, float duration = 0.5f,
+            bool needProperties = false)
+        {
+            MeshRenderer[] meshRenderers = go.GetComponentsInChildren<MeshRenderer>();
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                meshRenderers[i].SetAlpha(alpha, duration, needProperties);
+            }
+        }
+
+        public static void ResetMaterials(this GameObject go)
+        {
+            MeshRenderer[] meshRenderers = go.GetComponentsInChildren<MeshRenderer>();
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                meshRenderers[i].ResetMaterials();
+            }
         }
 
         #endregion
@@ -281,6 +362,55 @@
             }
 
             return b;
+        }
+
+        #endregion
+
+
+        #region Coroutine
+
+        public static IEnumerator WaitSecond(float second, Action callBack)
+        {
+            yield return new WaitForSeconds(second);
+            callBack?.Invoke();
+        }
+
+        #endregion
+
+
+        #region CinemachineVirtualCamera
+
+        private static int cv_Index = 11;
+
+        private static int CV_Index
+        {
+            get => ++cv_Index;
+        }
+
+        public static void SetActiveCamera(this CinemachineVirtualCamera camera)
+        {
+            camera.Priority = CV_Index;
+        }
+
+        #endregion
+
+
+
+        #region OpenUrl
+
+        [DllImport("__Internal")]
+        private static extern void OpenPage(string str);
+
+
+        public static void OpenURL(string url)
+        {
+#if UNITY_EDITOR
+            Application.OpenURL(url);
+#elif UNITY_WEBGL
+            OpenPage(url);
+#else
+            Application.OpenURL(url);
+#endif
         }
 
         #endregion

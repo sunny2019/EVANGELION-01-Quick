@@ -136,7 +136,7 @@ namespace HLGInterface
         }
 
 
-        private static IEnumerator WebRequest(UnityWebRequestType type, string url, string jsonData, bool sendBase64,
+        public static IEnumerator WebRequest(UnityWebRequestType type, string url, string jsonData, bool sendBase64,
             bool getBase64, UnityAction failureCallBack, UnityAction<string> successCallBack, string[] otherHeaderName,
             string[] otherHeaderValue)
         {
@@ -149,6 +149,7 @@ namespace HLGInterface
             byte[] body = Encoding.UTF8.GetBytes(jsonData);
             
             UnityWebRequest unityWeb = new UnityWebRequest(@url, type.ToString());
+            
             unityWeb.uploadHandler = new UploadHandlerRaw(body);
             unityWeb.SetRequestHeader("Content-Type", "application/json;charset=utf-8");
             //unityWeb.SetRequestHeader("Authorization", "Bearer " + token);
@@ -164,7 +165,7 @@ namespace HLGInterface
             yield return unityWeb.SendWebRequest();
             if (unityWeb.isHttpError|| unityWeb.isNetworkError)
             {
-                //Debug.Log("failure:" + unityWeb.error);
+                Debug.Log("failure:" + unityWeb.error);
                 failureCallBack?.Invoke();
                 yield break;
             }

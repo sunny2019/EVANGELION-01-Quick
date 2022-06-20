@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637804483681053383
+  lastScan: 637913158414446324
   supportSerializedTypes:
   - TypeName: UnityEngine.AudioSource, UnityEngine.AudioModule
     IsCustom: 0
@@ -24,14 +24,40 @@ MonoBehaviour:
   - TypeName: BloodType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
+  - TypeName: Cinemachine.CinemachineVirtualCamera, Cinemachine
+    IsCustom: 0
+    Emit: 1
   - TypeName: UnityEngine.Coroutine, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: DeviceParam, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[Game.UI.LabQuestSprite, Assembly-CSharp],[UnityEngine.Sprite,
       UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[OldPeopleType, Assembly-CSharp],[Cinemachine.CinemachineVirtualCamera,
+      Cinemachine]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[OldPeopleType, Assembly-CSharp],[UnityEngine.GameObject,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[OldPeopleType, Assembly-CSharp],[OldPeopleData,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[SmartDevice, Assembly-CSharp],[Cinemachine.CinemachineVirtualCamera,
+      Cinemachine]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[SmartDevice, Assembly-CSharp],[UnityEngine.GameObject,
+      UnityEngine.CoreModule]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[SmartDevice, Assembly-CSharp],[SmartData,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
@@ -55,8 +81,15 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[SmartDevice, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[EVANGELION.SoundType,
       EVANGELION]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.GameObject, UnityEngine.CoreModule
     IsCustom: 0
     Emit: 1
   - TypeName: Gender, Assembly-CSharp
@@ -83,6 +116,10 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[SmartDevice, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.IEqualityComparer`1[[EVANGELION.SoundType,
       EVANGELION]], mscorlib
     IsCustom: 0
@@ -99,6 +136,17 @@ MonoBehaviour:
     Emit: 1
   - TypeName: System.Collections.Generic.List`1[[UnityEngine.Coroutine, UnityEngine.CoreModule]],
       mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[DeviceParam, Assembly-CSharp]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.String,
+      mscorlib]], mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: LiveStatus, Assembly-CSharp
@@ -120,6 +168,15 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: PropertyStatus, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: SmartData, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: SmartDevice, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: SmartDeviceType, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: EVANGELION.SoundType, EVANGELION

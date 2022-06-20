@@ -16,6 +16,7 @@
         public CustomDropdown dp_Conclusion;
         public TMP_InputField input_Conclusion;
         public HorizontalSelector StarRating;
+        public TMP_Text txt_TotalScore;
         public Button btn_ReportCommit;
         public Transform ReportList;
 

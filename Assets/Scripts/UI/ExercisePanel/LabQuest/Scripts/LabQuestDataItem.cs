@@ -65,13 +65,14 @@ namespace Game.UI
         [ReadOnly] public GameObject toggleParent;
         [ReadOnly] public Question quest;
 
-        public LabQuestDataItem Init(Question quest, int Index)
+        public LabQuestDataItem Init(Question quest, int Index,bool showIndex)
         {
             //清理集合
             ChoiceToggle.Clear();
             //设置题干
             topicTypeSprite.sprite = topicSprites[quest.questType];
-            topicContent.text = Index + "." + quest.topicContent;
+            topicContent.text = (showIndex?(Index + "."):string.Empty) + quest.topicContent;
+
             //设置题干图片
             if (quest.topicHaveSprite)
             {
@@ -120,63 +121,7 @@ namespace Game.UI
 
             return this;
         }
-
-
-        public LabQuestDataItem Init_Addition(Question quest, int Index)
-        {
-            //清理集合
-            ChoiceToggle.Clear();
-            //设置题干
-            topicTypeSprite.sprite = topicSprites[quest.questType];
-            topicContent.text = Index + "." + quest.topicContent;
-            //设置题干图片
-            if (quest.topicHaveSprite)
-            {
-                topicImageGroup.SetActive(true);
-                topicImage.sprite = quest.topicSprite;
-                topicImageIndex.text = quest.topicSpriteName;
-            }
-            else topicImageGroup.SetActive(false);
-
-            SpawnPool spawnPool = PoolManager.Pools["LabQuest_Additional"];
-
-
-            Transform OptionPrefab =
-                quest.optionIsSprite ? spawnPool.prefabs["ImageOption"] : spawnPool.prefabs["TextOption"];
-            //设置选项容器
-            imageOptionsToggleGroup.SetActive(quest.optionIsSprite);
-            textOptionsToggleGroup.SetActive(!quest.optionIsSprite);
-            toggleParent = quest.optionIsSprite ? imageOptionsToggleGroup : textOptionsToggleGroup;
-            toggleParent.GetComponent<ToggleGroup>().allowSwitchOff = true;
-
-            //设置选项
-            int choicesCount = quest.optionIsSprite ? quest.spriteChoices.Count : quest.txtChoices.Count;
-            for (int i = 0; i < choicesCount; i++)
-            {
-                ChoiceToggle.Add(spawnPool.Spawn(OptionPrefab, toggleParent.transform).UIPoolSpawnedResetY().GetComponent<LabQuestDataOption>()
-                    .InitOption(quest.optionIsSprite ? (Choice)quest.spriteChoices[i] : (Choice)quest.txtChoices[i]));
-                ChoiceToggle[i].interactable = true;
-                ChoiceToggle[i].isOn = false;
-            }
-
-            //处理题目类型逻辑(多选不需处理)
-            if (quest.questType == LabQuestSprite.Single || quest.questType == LabQuestSprite.Judgment)
-            {
-                for (int i = 0; i < ChoiceToggle.Count; i++)
-                {
-                    int indexI = i;
-                    ChoiceToggle[indexI].onValueChanged.AddListener(SingleAndJudgmentChoiceToggleOnValueChanged);
-                }
-            }
-
-            //设置解析隐藏
-            analyzeGroup.SetActive(false);
-
-            //保存试题引用
-            this.quest = quest;
-
-            return this;
-        }
+        
 
         public void SingleAndJudgmentChoiceToggleOnValueChanged(bool isTrue)
         {
@@ -192,14 +137,16 @@ namespace Game.UI
             }
         }
 
-        public bool Sumbit()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="canModify">是否能够继续修改</param>
+        /// <returns></returns>
+        public bool Sumbit(bool canModify = false)
         {
             bool isRight = true;
             for (int i = 0; i < ChoiceToggle.Count; i++)
             {
-                //清除Toggle事件和交互
-                ChoiceToggle[i].onValueChanged.RemoveListener(SingleAndJudgmentChoiceToggleOnValueChanged);
-                ChoiceToggle[i].interactable = false;
                 //判断是否选择了正确选项
                 if (quest.CorrectOption.Contains(ChoiceToggle[i].GetComponent<LabQuestDataOption>().choiceIndexStr) && ChoiceToggle[i].isOn) //是正确答案并且选择了
                 {
@@ -213,6 +160,19 @@ namespace Game.UI
                 }
             }
 
+            //如果能够继续修改就直接返回对错，否则直接禁用所有交互
+            if (canModify)
+                return isRight;
+            
+            
+            
+            for (int i = 0; i < ChoiceToggle.Count; i++)
+            {
+                //清除Toggle事件和交互
+                ChoiceToggle[i].onValueChanged.RemoveListener(SingleAndJudgmentChoiceToggleOnValueChanged);
+                ChoiceToggle[i].interactable = false;
+            }
+            
             StringBuilder resultNotice = new StringBuilder();
             if (isRight)
                 resultNotice.Append("<color=green>作答正确！</color>");

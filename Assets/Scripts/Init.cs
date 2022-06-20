@@ -1,3 +1,5 @@
+using System;
+
 namespace Game
 {
     using UnityEngine;
@@ -7,10 +9,9 @@ namespace Game
     [DisallowMultipleComponent]
     public class Init : MonoBehaviour
     {
-
-
         private async void Awake()
         {
+            ExpData. firstEnterTime=DateTime.Now;
 #if DEBUG
             await ELDebugger.Init();
 #endif
@@ -19,7 +20,7 @@ namespace Game
             
             
             await LoadScenePanelScreen.LoadSingleScene(LoadSceneName.Scene_Main);
-            await ELUIManager.Ins.OpenUI<MoudleChoicePanelScreen>();
+            //await ELUIManager.Ins.OpenUI<MoudleChoicePanelScreen>();
             //Destroy(gameObject);
         }
     }

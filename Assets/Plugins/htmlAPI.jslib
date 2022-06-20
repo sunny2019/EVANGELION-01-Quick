@@ -4,7 +4,8 @@ mergeInto(LibraryManager.library, {
    var username=window.sessionStorage.getItem("username");
    var token=window.sessionStorage.getItem("token");
    var path=window.sessionStorage.getItem("path");
-   var returnStr = username+'~'+ token+'~'+path;
+   var scoreapi=window.sessionStorage.getItem("scoreapi");
+   var returnStr = username+'~'+ token+'~'+path+'~'+scoreapi;
    var bufferSize = lengthBytesUTF8(returnStr) + 1;
    var buffer = _malloc(bufferSize);
    stringToUTF8(returnStr, buffer, bufferSize);
@@ -24,5 +25,9 @@ mergeInto(LibraryManager.library, {
    		} 
    		else return null; //返回参数值
    	},
+   	
+   	OpenPage: function (str) {
+   		window.open(Pointer_stringify(str));
+    },
    
  });

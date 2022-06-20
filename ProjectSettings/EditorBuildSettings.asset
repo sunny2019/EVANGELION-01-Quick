@@ -12,10 +12,7 @@ EditorBuildSettings:
     path: Assets/Res/Scenes/Scene_Main.unity
     guid: 4aadafc353d4cd3448c616f7459fe409
   - enabled: 1
-    path: Assets/Res/Scenes/Scene_Models.unity
-    guid: b3f8b2ac4049bd947ba28cc4ee282cf2
-  - enabled: 1
-    path: "Assets/Res/Scenes/Scene_\u60C5\u666F\u6A21\u62DF\u6A21\u5757.unity"
+    path: Assets/Res/Scenes/Scene_Exp.unity
     guid: bb914e73c3793bb469e283755abb9c7a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c211189d409d7c44b9383c8a373657d6,
