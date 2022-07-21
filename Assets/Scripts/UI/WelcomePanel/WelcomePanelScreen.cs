@@ -2,7 +2,6 @@
 
 namespace Game.UI
 {
-    using Cysharp.Threading.Tasks;
     using EVANGELION;
 
     public class WelcomePanelScreenParam : UIOpenScreenParameterBase
@@ -21,9 +20,7 @@ namespace Game.UI
             get => UIConst.WelcomePanel;
         }
 
-#pragma warning disable CS1998
-        protected override async UniTask OnLoadSuccess()
-#pragma warning restore CS1998
+        protected override void OnLoadSuccess()
         {
             mCtrl = mCtrlBase as WelcomePanelCtrl;
             mParam = mOpenParam as WelcomePanelScreenParam;

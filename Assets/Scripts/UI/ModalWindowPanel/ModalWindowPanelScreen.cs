@@ -1,6 +1,5 @@
 ﻿namespace Game.UI
 {
-    using Cysharp.Threading.Tasks;
     using EVANGELION;
     using Michsky.UI.ModernUIPack;
     using UnityEngine.Events;
@@ -19,9 +18,7 @@
             get => UIConst.ModalWindowPanel;
         }
 
-#pragma warning disable CS1998
-        protected override async UniTask OnLoadSuccess()
-#pragma warning restore CS1998
+        protected override void OnLoadSuccess()
         {
             mCtrl = mCtrlBase as ModalWindowPanelCtrl;
             mParam = mOpenParam as ModalWindowScreenParam;
@@ -35,13 +32,13 @@
         /// <param name="confirm"></param>
         /// <param name="cancel"></param>
         /// <param name="style"></param>
-        public static async UniTask OpenModalWindowNoTabs(string title, string description, bool showConfirmButton = true, UnityAction confirm = null, bool showCancelButton = true,
+        public static void OpenModalWindowNoTabs(string title, string description, bool showConfirmButton = true, UnityAction confirm = null, bool showCancelButton = true,
             UnityAction cancel = null,
             ModalWindowStyle style = ModalWindowStyle.Style2,
             bool needCountdown = false,
             int countdownLength = 3)
         {
-            ModalWindowPanelScreen modalWindowPanelScreen = await ELUIManager.Ins.OpenUI<ModalWindowPanelScreen>();
+            ModalWindowPanelScreen modalWindowPanelScreen =  ELUIManager.Ins.OpenUI<ModalWindowPanelScreen>();
             ModalWindowManager modalWindowManager = modalWindowPanelScreen.mCtrl.ModalWindowManagerDic[style + "" + ModalWindowType.Standard];
             //参数设置
             modalWindowManager.titleText = title;
@@ -92,9 +89,9 @@
         /// 未完善
         /// </summary>
         /// <param name="style"></param>
-        private static async UniTask OpenModalWindowWithTabs(ModalWindowStyle style = ModalWindowStyle.Style2)
+        private static void OpenModalWindowWithTabs(ModalWindowStyle style = ModalWindowStyle.Style2)
         {
-            ModalWindowPanelScreen modalWindowPanelScreen = await ELUIManager.Ins.OpenUI<ModalWindowPanelScreen>();
+            ModalWindowPanelScreen modalWindowPanelScreen =  ELUIManager.Ins.OpenUI<ModalWindowPanelScreen>();
             ModalWindowManager modalWindowManager = modalWindowPanelScreen.mCtrl.ModalWindowManagerDic[style + "" + ModalWindowType.WithTabs];
             //参数设置
             //-------

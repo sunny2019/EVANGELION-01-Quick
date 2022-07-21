@@ -13,15 +13,17 @@ namespace Game
         {
             ExpData. firstEnterTime=DateTime.Now;
 #if DEBUG
-            await ELDebugger.Init();
+             ELDebugger.Init();
 #endif
-            await ELAudioManager.Init();
-            await ELUIManager.Init();
+             ELAudioManager.Init();
+             ELUIManager.Init();
             
             
-            await LoadScenePanelScreen.LoadSingleScene(LoadSceneName.Scene_Main);
-            //await ELUIManager.Ins.OpenUI<MoudleChoicePanelScreen>();
-            //Destroy(gameObject);
+             LoadScenePanelScreen.LoadSingleScene(LoadSceneName.Scene_Main, () =>
+             {
+                 ModalWindowPanelScreen.OpenModalWindowNoTabs("提示", "场景加载完成", true, null, false);
+             });
+             
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Game.UI
 {
     using EVANGELION;
-    using Cysharp.Threading.Tasks;
 
     public class TopToolbarPanelScreenParam : UIOpenScreenParameterBase
     {
@@ -13,7 +12,7 @@
         TopToolbarPanelCtrl mCtrl;
         TopToolbarPanelScreenParam mParam;
 
-        protected override async UniTask OnLoadSuccess()
+        protected override void  OnLoadSuccess()
         {
             mCtrl = mCtrlBase as TopToolbarPanelCtrl;
             mParam = mOpenParam as TopToolbarPanelScreenParam;

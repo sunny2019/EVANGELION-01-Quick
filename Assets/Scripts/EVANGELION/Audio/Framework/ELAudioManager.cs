@@ -1,13 +1,12 @@
 ﻿namespace EVANGELION
 {
-    using Cysharp.Threading.Tasks;
     using UnityEngine;
 
     public class ELAudioManager : MonoSingleton<ELAudioManager>
     {
         private AudioRoot audioRoot;
 
-        protected override async UniTask OnInit()
+        protected override void OnInit()
         {
             // 初始化UI根节点
             audioRoot = Instantiate(Resources.Load<GameObject>("AudioRoot"),transform).GetComponent<AudioRoot>();

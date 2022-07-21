@@ -6,7 +6,6 @@ using DG.Tweening;
 namespace Game.UI
 {
     using EVANGELION;
-    using Cysharp.Threading.Tasks;
     using UnityEngine;
 
     public class SchedulePanelScreenParam : UIOpenScreenParameterBase
@@ -22,7 +21,7 @@ namespace Game.UI
         SchedulePanelCtrl mCtrl;
         SchedulePanelScreenParam mParam;
 
-        protected override async UniTask OnLoadSuccess()
+        protected override void OnLoadSuccess()
         {
             mCtrl = mCtrlBase as SchedulePanelCtrl;
             mParam = mOpenParam as SchedulePanelScreenParam;

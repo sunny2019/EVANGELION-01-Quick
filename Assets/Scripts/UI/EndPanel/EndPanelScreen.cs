@@ -1,6 +1,5 @@
 ﻿namespace Game.UI
 {
-    using Cysharp.Threading.Tasks;
     using EVANGELION;
     using UnityEngine;
 
@@ -27,9 +26,7 @@
             get => UIConst.EndPanel;
         }
 
-#pragma warning disable CS1998
-        protected override async UniTask OnLoadSuccess()
-#pragma warning restore CS1998
+        protected override void OnLoadSuccess()
         {
             mCtrl = mCtrlBase as EndPanelCtrl;
             mParam = mOpenParam as EndPanelScreenParam;

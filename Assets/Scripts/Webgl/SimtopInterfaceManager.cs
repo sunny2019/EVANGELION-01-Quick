@@ -45,7 +45,7 @@ namespace SimtopInterface
                 userInfo[2] == "null")
             {
                 ModalWindowPanelScreen.OpenModalWindowNoTabs("系统提示",
-                    "检测到当前用户未登录\n<color=red>请返回实验网站进行登录。</color>", false, null, false).GetAwaiter();
+                    "检测到当前用户未登录\n<color=red>请返回实验网站进行登录。</color>", false, null, false);
                 failureCallBack?.Invoke();
             }
             else

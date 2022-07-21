@@ -11,7 +11,6 @@ namespace Game.UI
     using UnityEngine.UI;
     using EVANGELION;
     using DG.Tweening;
-    using Cysharp.Threading.Tasks;
 
     public class ReportPanelScreenParam : UIOpenScreenParameterBase
     {
@@ -25,7 +24,7 @@ namespace Game.UI
         public override string mResName => UIConst.ReportPanel;
 
 
-        protected override async UniTask OnLoadSuccess()
+        protected override void OnLoadSuccess()
         {
             base.OnLoadSuccess();
             mCtrl = mCtrlBase as ReportPanelCtrl;

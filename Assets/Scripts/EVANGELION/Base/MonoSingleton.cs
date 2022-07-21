@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Cysharp.Threading.Tasks;
     using UnityEngine;
 
     public class MonoSingleton<T> : MonoBehaviour where T : Component
@@ -23,7 +22,7 @@
             }
         }
         
-        public static async Task<T> Init()
+        public static  T Init()
         {
             if (_instance == null)
             {
@@ -48,7 +47,7 @@
 
                     go.transform.SetParent(bootObj.transform);
 
-                    await _instance.GetComponent<MonoSingleton<T>>().OnInit();
+                     _instance.GetComponent<MonoSingleton<T>>().OnInit();
                 }
                 else
                 {
@@ -64,9 +63,8 @@
             return _instance;
         }
 
-        protected virtual UniTask OnInit()
+        protected virtual void OnInit()
         {
-            return UniTask.CompletedTask;
         }
 
 

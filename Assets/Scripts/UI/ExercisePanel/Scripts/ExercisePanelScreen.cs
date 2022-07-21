@@ -5,7 +5,6 @@ using TMPro;
 namespace Game.UI
 {
     using System.Collections.Generic;
-    using Cysharp.Threading.Tasks;
     using EVANGELION;
     using PathologicalGames;
     using UnityEngine;
@@ -38,7 +37,7 @@ namespace Game.UI
 
         private LabQuestData currentLabQuestData = null;
 
-        protected override async UniTask OnLoadSuccess()
+        protected override void OnLoadSuccess()
         {
             base.OnLoadSuccess();
             mCtrl = mCtrlBase as ExercisePanelCtrl;
@@ -49,10 +48,10 @@ namespace Game.UI
             mCtrl.panel.DOFade(1, 0.5f);
         }
 
-        public static async UniTask ShowExercise(string exerciseName, Action<string, int,int> commitCallBack, bool cacheResult = true, bool canRefresh = true, bool canClose = true,
+        public static void ShowExercise(string exerciseName, Action<string, int,int> commitCallBack, bool cacheResult = true, bool canRefresh = true, bool canClose = true,
             bool strictMode = false,Action closeCallBack=null,bool showIndex=true,string panelTitle = "",string commitBtnTxt="")
         {
-            await ELUIManager.Ins.OpenUI<ExercisePanelScreen>(new ExercisePanelScreenParam()
+             ELUIManager.Ins.OpenUI<ExercisePanelScreen>(new ExercisePanelScreenParam()
             {
                 exerciseName = exerciseName,
                 commitCallBack = commitCallBack,

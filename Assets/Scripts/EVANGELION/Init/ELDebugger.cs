@@ -3,7 +3,6 @@
     using UnityEngine;
     using System.Collections.Generic;
     using System;
-    using Cysharp.Threading.Tasks;
 
     public struct LogData
     {
@@ -47,10 +46,9 @@
         private int _frameNumber;
         private float _lastShowFPSTime;
 
-        protected override UniTask OnInit()
+        protected override void OnInit()
         {
             Application.logMessageReceived += LogHandler;
-            return UniTask.CompletedTask;
         }
 
 

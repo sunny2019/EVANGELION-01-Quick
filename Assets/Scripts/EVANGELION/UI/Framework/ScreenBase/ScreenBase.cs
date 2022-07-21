@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
+﻿
 
 namespace EVANGELION
 {
@@ -22,7 +22,7 @@ namespace EVANGELION
         }
 
        
-        public  async UniTask StartLoad( UIOpenScreenParameterBase param = null)
+        public  void StartLoad( UIOpenScreenParameterBase param = null)
         {
             
             mOpenParam = param;
@@ -30,11 +30,11 @@ namespace EVANGELION
             var ctrl = Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/"+mResName),ELUIManager.Ins.GetUIRootTransform());
 
             
-            await PanelLoadComplete(ctrl);
+             PanelLoadComplete(ctrl);
         }
 
         // 资源加载完成
-        async UniTask PanelLoadComplete(GameObject ctrl)
+        void PanelLoadComplete(GameObject ctrl)
         {
             mPanelRoot = ctrl;
             // 获取控件对象
@@ -44,16 +44,14 @@ namespace EVANGELION
             UpdateLayoutLevel();
 
             // 调用加载成功方法
-            await OnLoadSuccess();
+             OnLoadSuccess();
 
             // 添加到控制层
             ELUIManager.Ins.AddUI(this);
         }
 
         // 脚本处理完成
-#pragma warning disable 1998
-        protected virtual async UniTask OnLoadSuccess()
-#pragma warning restore 1998
+        protected virtual  void OnLoadSuccess()
         {
             
         }

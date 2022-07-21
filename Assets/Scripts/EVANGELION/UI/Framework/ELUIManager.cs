@@ -4,7 +4,6 @@ namespace EVANGELION
 {
     using System;
     using System.Collections.Generic;
-    using Cysharp.Threading.Tasks;
     using Sirenix.OdinInspector;
     using UnityEngine;
     using UnityEngine.Rendering.Universal;
@@ -45,7 +44,7 @@ namespace EVANGELION
         }
 
 
-        protected override async UniTask OnInit()
+        protected override void OnInit()
         {
             // 初始化UI根节点
             uiRoot = Instantiate(Resources.Load<GameObject>("UIRoot"),transform);
@@ -64,7 +63,7 @@ namespace EVANGELION
         /// <summary>
         ///  UI打开入口没有判断条件直接打开
         /// </summary>
-        private async UniTask<ScreenBase> OpenUI(Type type, UIOpenScreenParameterBase param = null)
+        private ScreenBase OpenUI(Type type, UIOpenScreenParameterBase param = null)
         {
             ScreenBase sb = GetUI(type);
             mUIOpenOrder++;
@@ -90,7 +89,7 @@ namespace EVANGELION
 
 
             sb = (ScreenBase) Activator.CreateInstance(type);
-            await sb.StartLoad(param);
+             sb.StartLoad(param);
             
                 
             mTypeScreens.Add(type, sb);
@@ -108,10 +107,10 @@ namespace EVANGELION
         /// <summary>
         ///  UI打开入口没有判断条件直接打开
         /// </summary>
-        public async UniTask<TScreen> OpenUI<TScreen>(UIOpenScreenParameterBase param = null) where TScreen : ScreenBase
+        public TScreen OpenUI<TScreen>(UIOpenScreenParameterBase param = null) where TScreen : ScreenBase
         {
             Type type = typeof(TScreen);
-            return  (TScreen) await OpenUI(type, param);
+            return  (TScreen)  OpenUI(type, param);
         }
 
         /// <summary>

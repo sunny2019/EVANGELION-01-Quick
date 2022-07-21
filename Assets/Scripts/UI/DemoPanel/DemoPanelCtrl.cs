@@ -5,7 +5,5 @@
 
     public class DemoPanelCtrl : UICtrlBase
     {
-        public Button btn_GetInfo;
-        public Image img_Head;
     }
 }

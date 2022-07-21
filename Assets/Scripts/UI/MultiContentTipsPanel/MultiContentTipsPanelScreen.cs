@@ -4,11 +4,9 @@ using TMPro;
 namespace Game.UI
 {
     using System.Collections.Generic;
-    using Cysharp.Threading.Tasks;
     using EVANGELION;
     using Michsky.UI.ModernUIPack;
     using PathologicalGames;
-    using Sirenix.OdinInspector;
     using UnityEngine;
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
@@ -75,9 +73,7 @@ namespace Game.UI
             get => UIConst.MultiContentTipsPanel;
         }
 
-#pragma warning disable CS1998
-        protected override async UniTask OnLoadSuccess()
-#pragma warning restore CS1998
+        protected override void OnLoadSuccess()
         {
             mCtrl = mCtrlBase as MultiContentTipsPanelCtrl;
             mParam = mOpenParam as MultiContentTipsPanelScreenParam;
@@ -172,9 +168,9 @@ namespace Game.UI
             }
         }
 
-        public static async UniTask ShowSpriteContent(Sprite content,Action closeCallBack=null)
+        public static void ShowSpriteContent(Sprite content,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.SpriteContent,
                 spriteContent = content,
@@ -182,9 +178,9 @@ namespace Game.UI
             });
         }
 
-        public static async UniTask ShowTxtContent(string content,Action closeCallBack=null)
+        public static void ShowTxtContent(string content,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.TxtContent,
                 txtContent = content,
@@ -192,9 +188,9 @@ namespace Game.UI
             });
         }
 
-        public static async UniTask ShowVideoContent(string videoName,Action closeCallBack=null)
+        public static void ShowVideoContent(string videoName,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.VideoContent,
                 txtVideoName = videoName,
@@ -202,9 +198,9 @@ namespace Game.UI
             });
         }
 
-        public static async UniTask ShowSpriteListViewContent(Sprite content,Action closeCallBack=null)
+        public static void ShowSpriteListViewContent(Sprite content,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.SpriteListView,
                 spriteListViewContent = content,
@@ -212,9 +208,9 @@ namespace Game.UI
             });
         }
 
-        public static async UniTask ShowPageWindowContent(List<PageContent> content,string closeBtnName="",Action closeCallBack=null)
+        public static void ShowPageWindowContent(List<PageContent> content,string closeBtnName="",Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.PageWindow,
                 pageContents = content,
@@ -290,9 +286,9 @@ namespace Game.UI
             }
         }
         
-        public static async UniTask ShowFullScreenSpriteContent(Sprite content,string closeBtnName,Action closeCallBack=null)
+        public static void ShowFullScreenSpriteContent(Sprite content,string closeBtnName,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.FullScreenSpriteContent,
                 fullScreenSpriteContent = content,
@@ -301,9 +297,9 @@ namespace Game.UI
             });
         }
         
-        public static async UniTask ShowFullScreenSpriteContent(Sprite content,string openurl,string closeBtnName,Action closeCallBack=null)
+        public static void ShowFullScreenSpriteContent(Sprite content,string openurl,string closeBtnName,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.FullScreenSpriteContent,
                 fullScreenSpriteContent = content,
@@ -314,9 +310,9 @@ namespace Game.UI
         }
 
         
-        public static async UniTask ShowStringTableList(string titleName,List<List<string >> datas,string closeBtnName=null,Action closeCallBack=null)
+        public static void ShowStringTableList(string titleName,List<List<string >> datas,string closeBtnName=null,Action closeCallBack=null)
         {
-            await ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
+             ELUIManager.Ins.OpenUI<MultiContentTipsPanelScreen>(new MultiContentTipsPanelScreenParam()
             {
                 tipType = MultiContentTipsType.StringTableList,
                 stringTableListTitleName = titleName,
